@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
 * Created by Juan on 16/02/2015.
@@ -20,7 +22,8 @@ public class CreateTournamentFragment extends Fragment {
 
 
 
-    private EditText mEditTextDatePicker;
+    private static EditText mEditTextDatePicker;
+
     public CreateTournamentFragment() {
     }
 
@@ -56,12 +59,23 @@ public class CreateTournamentFragment extends Fragment {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             // Do something with the date chosen by the user
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, day);
+            Date date = calendar.getTime();
+            String formattedDate = new SimpleDateFormat("dd-MM-yyy").format(date);
+            setDateToEditText(formattedDate);
+
+
         }
     }
 
     public void showDatePickerDialog() {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
+    public static void setDateToEditText (String date) {
+        mEditTextDatePicker.setText(date);
     }
 
 }

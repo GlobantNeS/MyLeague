@@ -44,12 +44,12 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="30dp">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/button_select_date"
+                android:hint="@string/edit_text_select_date"
                 android:id="@+id/edit_text_date_picker"
                 android:layout_gravity="center_horizontal"
                 android:nestedScrollingEnabled="true"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText4"
             android:hint="@string/edit_text_first_place"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:gravity="center" />
 
         <EditText
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText8"
             android:hint="@string/edit_text_second_place"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:gravity="center" />
 
         <EditText
@@ -88,16 +88,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText9"
             android:hint="@string/edit_text_third_place"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_add_team"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1"
+            android:layout_marginTop="30dp" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_add_team"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>

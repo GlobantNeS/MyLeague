@@ -19,11 +19,11 @@
     <string name="text_view_add_team">Add team</string>
     <string name="title_activity_match_result">MatchResultActivity</string>
     <string name="text_view_local">Local</string>
-    <string name="text_view_visitant"/>
-    <string name="text_view_local_score"/>
-    <string name="text_view_visitant_score" >Score</string>
+    <string name="text_view_visitant"></string>
+    <string name="text_view_local_score"></string>
+    <string name="text_view_vistant_score" >Score</string>
     <string name="text_view_local_score_label">Score</string>
-    <string name="text_view_visitant_score_label" >Score</string>
+    <string name="text_view_vistant_score_label" >Score</string>
     <string name="text_view_local_faults">Faults</string>
     <string name="text_view_visitant_faults">Faults</string>
     <string name="edit_text_period">Period</string>
@@ -48,6 +48,6 @@
     <string name="text_view_yellow_cards_for_play" />
     <string name="text_view_red_cards_for_play" />
     <string name="text_save_game">Save Game</string>
-    <string name="button_select_date" >Date</string>
+    <string name="edit_text_select_date" >Date</string>
 
 </resources>
