@@ -1,4 +1,4 @@
-package com.globant.myleague;
+package com.globant.myleague.services;
 
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.pojo.Tournaments;
@@ -10,7 +10,9 @@ import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
+import retrofit.http.Body;
 import retrofit.http.GET;
+import retrofit.http.POST;
 import retrofit.http.Path;
 
 /**
@@ -29,6 +31,9 @@ public class MyLeagueService {
 
         @GET(TEAMS_ENDPOINT)
         void getTeams(Callback<List<Teams>> callback);
+
+        @POST(TEAMS_ENDPOINT)
+        void setTeam(@Body Teams team,Callback<Teams> callback);
     }
 
     public MyLeagueService() {
