@@ -85,12 +85,8 @@ public class SignUpTeamFragment extends Fragment {
 
                     @Override
                     public void failure(RetrofitError error) {
-<<<<<<< HEAD
                         if(error!=null)
                             Toast.makeText(getActivity(),error.getResponse().getBody().toString(),Toast.LENGTH_LONG).show();
-=======
-                        Toast.makeText(getActivity(),error.getResponse().toString(),Toast.LENGTH_LONG).show();
->>>>>>> origin/Developer
                     }
                 });
 
