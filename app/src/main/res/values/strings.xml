@@ -49,5 +49,6 @@
     <string name="text_view_red_cards_for_play" />
     <string name="text_save_game">Save Game</string>
     <string name="edit_text_select_date" >Date</string>
+    <string name="periodicity">Periodicity</string>
 
 </resources>

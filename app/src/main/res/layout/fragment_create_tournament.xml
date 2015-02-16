@@ -38,7 +38,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/edit_text_name"
             android:hint="@string/edit_text_name_hint"
-            android:gravity="center" />
+            android:maxLength="50"
+            android:maxLines="0"
+            android:lines="1"
+            android:inputType="text"
+            android:gravity="center_horizontal" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -56,46 +60,62 @@
                 android:layout_weight="2"
                 android:focusable="false"
                 android:clickable="true"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:inputType="date" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3"
+                android:id="@+id/edit_text_period"
                 android:hint="@string/edit_text_period"
                 android:gravity="center"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="text"
+                android:focusable="false"
+                android:clickable="true"/>
         </LinearLayout>
 
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText4"
+            android:id="@+id/edit_text_first_place_award"
             android:hint="@string/edit_text_first_place"
             android:layout_marginTop="30dp"
-            android:gravity="center" />
+            android:maxLength="50"
+            android:maxLines="0"
+            android:lines="1"
+            android:inputType="text"
+            android:gravity="center_horizontal" />
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText8"
+            android:id="@+id/edit_text_second_place_award"
             android:hint="@string/edit_text_second_place"
             android:layout_marginTop="30dp"
-            android:gravity="center" />
+            android:maxLength="50"
+            android:maxLines="0"
+            android:lines="1"
+            android:inputType="text"
+            android:gravity="center_horizontal" />
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText9"
+            android:id="@+id/edit_text_third_place_award"
             android:hint="@string/edit_text_third_place"
             android:layout_marginTop="30dp"
-            android:gravity="center" />
+            android:maxLength="50"
+            android:maxLines="0"
+            android:lines="1"
+            android:inputType="text"
+            android:gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_add_team"
-            android:id="@+id/button"
+            android:id="@+id/button_add_team"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
