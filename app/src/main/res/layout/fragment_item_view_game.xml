@@ -2,46 +2,63 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.globant.myleague.ItemViewTournamentFragment"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <com.android.volley.toolbox.NetworkImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nivLocal"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/text_desc_cont_picture_team"
-        android:layout_weight="1" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:id="@+id/llMatch"
+        android:layout_weight="1">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nivLocal"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/text_desc_cont_picture_team"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvLocalName"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/text_vs"
+            android:id="@+id/tvVs"
+            android:layout_gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/tvVisitantName"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            android:gravity="end" />
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/nivVisitant"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="@string/text_desc_cont_picture_team"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvLocalName"
-        android:layout_weight="2"
-        android:layout_gravity="center_vertical" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/text_vs"
-        android:id="@+id/tvVs"
-        android:layout_gravity="center_vertical" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvVisitantName"
-        android:layout_weight="2"
-        android:layout_gravity="center_vertical" />
-
-    <com.android.volley.toolbox.NetworkImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nivVisitant"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/text_desc_cont_picture_team"
-        android:layout_weight="1" />
+        android:id="@+id/tvDateMatch"
+        android:layout_weight="0"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>
