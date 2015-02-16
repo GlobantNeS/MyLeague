@@ -11,5 +11,7 @@
     <string name="text_button_save">Save Team</string>
     <string name="text_desc_cont_camera">Take Picture\'s Team</string>
     <string name="text_desc_cont_picture_team">Picture\'s Team</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_add_my_team">Add My Team</string>
 
 </resources>
