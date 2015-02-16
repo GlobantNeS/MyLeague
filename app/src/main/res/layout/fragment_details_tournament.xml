@@ -3,6 +3,4 @@
     android:layout_height="match_parent"
     tools:context="com.globant.myleague.DetailsTournamentFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
 </FrameLayout>

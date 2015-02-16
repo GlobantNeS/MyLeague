@@ -48,6 +48,8 @@
     <string name="text_view_yellow_cards_for_play"></string>
     <string name="text_view_red_cards_for_play"></string>
     <string name="text_save_game">Save Game</string>
-    <string name="title_activity_principal_news">PrincipalNewsActivity</string>
+     <string name="title_activity_principal_news">PrincipalNewsActivity</string>
+     <string name="title_activity_match_list">Choose a Match</string>
+
 
 </resources>
