@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My League</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="text_name_team">Team\'s Name</string>
+    <string name="text_manager_name">Manager\'s Team</string>
+    <string name="text_email_team">Email\'s Team</string>
+    <string name="text_phone_team">Contact Phone\'s Team</string>
+    <string name="text_button_save">Save Team</string>
+    <string name="text_desc_cont_camera">Take Picture\'s Team</string>
+    <string name="text_desc_cont_picture_team">Picture\'s Team</string>
+
+</resources>
