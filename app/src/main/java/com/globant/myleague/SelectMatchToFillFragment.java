@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.globant.myleague.adapter.LinkAdapterMatch;
 import com.globant.myleague.pojo.Matches;
-import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
 
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ public class SelectMatchToFillFragment extends ListFragment {
     ArrayAdapter<Matches> mAdapter;
 
     final static String LOG_TAG = SelectTournamentToMatchFragment.class.getSimpleName();
+    final static String TOURNAMENT_ID = "TOURNAMENT_ID";
 
     public SelectMatchToFillFragment()
     {
@@ -46,7 +47,7 @@ public class SelectMatchToFillFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         List<Matches> matchesList= new ArrayList<>();
-        mAdapter = new ArrayAdapter<Matches>(getActivity(),R.layout.fragment_item_view_game,R.id.tvLocalName,matchesList);
+        mAdapter = new LinkAdapterMatch(getActivity(),R.layout.fragment_item_view_game,matchesList);
         setListAdapter(mAdapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,7 +64,8 @@ public class SelectMatchToFillFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-        mMyLeagueApiInterface.getMatches(new Callback<List<Matches>>() {
+        String id=getArguments().getString(TOURNAMENT_ID);
+        mMyLeagueApiInterface.getMatchesForTournament(id,new Callback<List<Matches>>() {
             @Override
             public void success(List<Matches> matcheses, Response response) {
                 if(response.getStatus()==200)

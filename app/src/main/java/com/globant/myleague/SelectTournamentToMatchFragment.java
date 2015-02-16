@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.globant.myleague.adapter.LinkAdapterTournament;
 import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
 
@@ -46,7 +47,7 @@ public class SelectTournamentToMatchFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         List<Tournaments> tournamentsList = new ArrayList<>();
-        mAdapter = new ArrayAdapter<Tournaments>(getActivity(),R.layout.fragment_item_view_tournament,R.id.tvTournamentName,tournamentsList);
+        mAdapter = new LinkAdapterTournament(getActivity(),R.layout.fragment_item_view_tournament,tournamentsList);
         setListAdapter(mAdapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
