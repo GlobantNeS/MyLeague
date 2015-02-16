@@ -29,5 +29,6 @@
     <string name="edit_text_second_place">Second place award</string>
     <string name="edit_text_third_place">Third place award</string>
     <string name="button_add_team">Add Team</string>
+    <string name="text_vs">VS</string>
 
 </resources>
