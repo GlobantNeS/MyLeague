@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">My League</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="text_name_team">Team\'s Name</string>
     <string name="text_manager_name">Manager\'s Team</string>
@@ -11,7 +10,14 @@
     <string name="text_button_save">Save Team</string>
     <string name="text_desc_cont_camera">Take Picture\'s Team</string>
     <string name="text_desc_cont_picture_team">Picture\'s Team</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_add_my_team">Add My Team</string>
+    <string name="text_vs">VS</string>
+    <string name="text_visit_goals">Visit Goals</string>
+    <string name="text_local_goals">Local Goals</string>
+    <string name="text_local">Local</string>
+    <string name="text_visit">Visit</string>
+    <string name="text_save_game">Save Game</string>
+    <string name="text_local_faults">Local Faults</string>
+    <string name="text_visit_faults">Visit Faults</string>
 
 </resources>
