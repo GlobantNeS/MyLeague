@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/linear_layout_match_item"
+    android:baselineAligned="false"
+    android:background="#be787878">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#ffffffff">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_play_date"
+                android:id="@+id/text_view_match_date"
+                android:layout_weight="0.63"
+                android:gravity="center_horizontal"
+               />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_play_hr"
+                android:id="@+id/text_view_match_hr"
+                android:layout_weight="0.15"
+                android:gravity="center_horizontal"
+              />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:weightSum="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical"
+            android:layout_margin="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/text_view_name_local_team"
+                android:id="@+id/text_view_name_local_club"
+                android:layout_weight="0.50"
+                android:gravity="center|center_horizontal"
+                  />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_local_score"
+                android:id="@+id/text_view_local_score"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_label_vs"
+                android:id="@+id/text_view_label_vs"
+                android:gravity="center_horizontal"
+                 />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:text="@string/text_view_visit_score"
+                android:id="@+id/text_view_away_score"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/text_view_name_visit_club"
+                android:id="@+id/text_view_name_away_club"
+                android:layout_weight="0.50"
+                android:gravity="center|center_horizontal"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="389dp"
+            android:layout_height="fill_parent"
+            android:weightSum="1"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView"
+                android:background="#ffff0c13" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/text_view_red_cards_for_play"
+                android:id="@+id/text_view_red_cards_for_match"
+                android:layout_weight="0.08"
+                android:paddingLeft="5dp" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView2"
+                android:background="#ffffe919" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/text_view_yellow_cards_for_play"
+                android:id="@+id/text_view_yellow_cards_for_match"
+                android:layout_weight="0.50"
+                android:paddingLeft="5dp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
