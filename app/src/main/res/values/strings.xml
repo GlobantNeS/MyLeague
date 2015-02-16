@@ -50,5 +50,6 @@
     <string name="text_save_game">Save Game</string>
     <string name="edit_text_select_date" >Date</string>
     <string name="periodicity">Periodicity</string>
+    <string name="title_activity_match_list">Choose a Match</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.globant.myleague.services;
 
+import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.pojo.Tournaments;
 import com.squareup.okhttp.OkHttpClient;
@@ -19,13 +20,19 @@ public class MyLeagueService {
     final static String TOURNAMENTS_ENDPOINT = "/tournaments";
     final static String TEAMS_ENDPOINT = "/teams";
     final static String TOURNAMENTS_ID_ENDPOINT = "/tournaments/{id}";
+    final static String MATCHES_ENDPOINT = "/matches";
 
     public interface ApiInterface {
+
+
         @GET(TOURNAMENTS_ENDPOINT)
         void getTournaments(Callback<List<Tournaments>> callback);
 
         @GET(TEAMS_ENDPOINT)
         void getTeams(Callback<List<Teams>> callback);
+
+        @GET(MATCHES_ENDPOINT)
+        void getMatches(Callback<List<Matches>> callback);
 
         @POST(TEAMS_ENDPOINT)
         void setTeam(@Body Teams team,Callback<Teams> callback);

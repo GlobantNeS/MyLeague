@@ -73,4 +73,9 @@ public class Tournaments {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    public String toString()
+    {
+        return name+"\n\t\t"+dateini;
+    }
 }
