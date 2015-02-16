@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CreateTournamentActivity"
+            android:label="@string/title_activity_create_tournament" >
+        </activity>
+        <activity
+            android:name=".AddTeamActivity"
+            android:label="@string/title_activity_add_team" >
+        </activity>
+        <activity
+            android:name=".MatchResultActivity"
+            android:label="@string/title_activity_match_result" >
+        </activity>
     </application>
 
 </manifest>
