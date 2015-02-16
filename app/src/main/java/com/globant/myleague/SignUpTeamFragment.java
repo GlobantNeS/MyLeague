@@ -80,6 +80,7 @@ public class SignUpTeamFragment extends Fragment {
                     public void success(Teams teams, Response response) {
                         if (response.getStatus() == 201) {
                             Toast.makeText(getActivity(),response.getBody().toString(),Toast.LENGTH_LONG).show();
+                            getActivity().finish();
                         }
                     }
 

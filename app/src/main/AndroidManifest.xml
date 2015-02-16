@@ -29,6 +29,10 @@
             android:name=".MatchResultActivity"
             android:label="@string/title_activity_match_result" >
         </activity>
+        <activity
+            android:name=".MatchesListActivity"
+            android:label="@string/title_activity_match_list" >
+        </activity>
     </application>
 
 </manifest>
