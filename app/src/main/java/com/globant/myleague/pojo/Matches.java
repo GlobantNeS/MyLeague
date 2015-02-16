@@ -7,8 +7,12 @@ public class Matches {
     private String id;
     @SerializedName("id_local")
     private String idLocal;
+    @SerializedName("name_local")
+    private String nameLocal;
     @SerializedName("id_visit")
     private String idVisit;
+    @SerializedName("name_visit")
+    private String nameVisit;
     @SerializedName("date_match")
     private String dateMatch;
     @SerializedName("local_score")
@@ -23,8 +27,6 @@ public class Matches {
     private String visitFaults;
     @SerializedName("visit_exp")
     private String visitExp;
-    @SerializedName("url")
-    private String url;
 
     public String getId() {
         return id;
@@ -106,11 +108,19 @@ public class Matches {
         this.visitExp = visitExp;
     }
 
-    public String getUrl() {
-        return url;
+    public String getNameLocal() {
+        return nameLocal;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setNameLocal(String nameLocal) {
+        this.nameLocal = nameLocal;
+    }
+
+    public String getNameVisit() {
+        return nameVisit;
+    }
+
+    public void setNameVisit(String nameVisit) {
+        this.nameVisit = nameVisit;
     }
 }
