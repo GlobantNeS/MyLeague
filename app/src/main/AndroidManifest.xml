@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.globant.myleague" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -10,11 +12,6 @@
         <activity
             android:name=".SignUpTeamActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".CreateTournamentActivity"
@@ -27,6 +24,16 @@
         <activity
             android:name=".MatchResultActivity"
             android:label="@string/title_activity_match_result" >
+
+        </activity>
+        <activity
+            android:name=".PrincipalNewsActivity"
+            android:label="@string/title_activity_principal_news" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
