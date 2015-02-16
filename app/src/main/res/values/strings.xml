@@ -11,5 +11,23 @@
     <string name="text_button_save">Save Team</string>
     <string name="text_desc_cont_camera">Take Picture\'s Team</string>
     <string name="text_desc_cont_picture_team">Picture\'s Team</string>
+    <string name="title_activity_create_tournament">CreateTournamentActivity</string>
+    <string name="text_view_create_tournament">Create a new tournament</string>
+    <string name="edit_text_name_hint">Tournament name</string>
+    <string name="edit_text_fecha_inicio">Date</string>
+    <string name="title_activity_add_team">AddTeamActivity</string>
+    <string name="text_view_add_team">Add team</string>
+    <string name="title_activity_match_result">MatchResultActivity</string>
+    <string name="text_view_local">Local</string>
+    <string name="text_view_visitant">Visitant</string>
+    <string name="text_view_local_score">Score</string>
+    <string name="text_view_vistant_score" >Score</string>
+    <string name="text_view_local_faults">Faults</string>
+    <string name="text_view_visitant_faults">Faults</string>
+    <string name="edit_text_period">Period</string>
+    <string name="edit_text_first_place" >First place award</string>
+    <string name="edit_text_second_place">Second place award</string>
+    <string name="edit_text_third_place">Third place award</string>
+    <string name="button_add_team">Add Team</string>
 
 </resources>
