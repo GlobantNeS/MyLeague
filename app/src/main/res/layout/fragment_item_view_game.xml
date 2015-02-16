@@ -34,7 +34,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/tvVisitantName"
         android:layout_weight="2"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center_vertical"
+        android:gravity="end" />
 
     <com.android.volley.toolbox.NetworkImageView
         android:layout_width="wrap_content"
