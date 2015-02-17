@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="show_news_filters">
+        <item>Show Matches</item>
+        <item>Show new tournaments</item>
+        <item>Show news soccer teams</item>
+    </string-array>
+
+</resources>

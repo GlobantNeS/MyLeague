@@ -30,6 +30,10 @@ public class Matches {
     private String visitFaults;
     @SerializedName("visit_exp")
     private String visitExp;
+    @SerializedName("url_img_local")
+    private String urlImgLocal;
+    @SerializedName("url_img_visit")
+    private String urlImgVisit;
 
 
 
@@ -127,5 +131,21 @@ public class Matches {
 
     public void setNameVisit(String nameVisit) {
         this.nameVisit = nameVisit;
+    }
+
+    public String getUrlImgLocal() {
+        return urlImgLocal;
+    }
+
+    public void setUrlImgLocal(String urlImgLocal) {
+        this.urlImgLocal = urlImgLocal;
+    }
+
+    public String getUrlImgVisit() {
+        return urlImgVisit;
+    }
+
+    public void setUrlImgVisit(String urlImgVisit) {
+        this.urlImgVisit = urlImgVisit;
     }
 }
