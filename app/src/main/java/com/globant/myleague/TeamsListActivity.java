@@ -6,15 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class CreateTournamentActivity extends ActionBarActivity {
+public class TeamsListActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_tournament);
+        setContentView(R.layout.activity_teams_list);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new CreateTournamentFragment())
+                    .add(R.id.container, new TeamsListFragment())
                     .commit();
         }
     }
@@ -23,7 +23,7 @@ public class CreateTournamentActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_create_tournament, menu);
+        getMenuInflater().inflate(R.menu.menu_teams_list, menu);
         return true;
     }
 
@@ -41,5 +41,6 @@ public class CreateTournamentActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

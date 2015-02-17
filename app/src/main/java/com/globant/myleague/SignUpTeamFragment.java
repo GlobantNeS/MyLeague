@@ -18,9 +18,6 @@ import android.widget.Toast;
 
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.services.MyLeagueService;
-
-import java.util.List;
-
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;

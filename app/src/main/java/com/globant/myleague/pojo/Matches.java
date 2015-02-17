@@ -2,9 +2,6 @@ package com.globant.myleague.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created the first version by kaineras on 16/02/15.
- */
 public class Matches {
     @SerializedName("id_tor")
     private String id;

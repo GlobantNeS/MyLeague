@@ -48,8 +48,7 @@
     <string name="text_view_yellow_cards_for_play"></string>
     <string name="text_view_red_cards_for_play"></string>
     <string name="text_save_game">Save Game</string>
-     <string name="title_activity_principal_news">PrincipalNewsActivity</string>
-     <string name="title_activity_match_list">Choose a Match</string>
+    <string name="title_activity_principal_news">PrincipalNewsActivity</string>
     <string name="text_view_score_local_ppal">0</string>
     <string name="text_view_score_away_ppal">0</string>
     <string name="text_view_name_away_ppal" />
@@ -61,6 +60,13 @@
     <string name="pref_news_title">Filter news by ...</string>
     <string name="pref_news_summary">You can filter the news</string>
     <string name="title_principal_activity_settings">Filter news</string>
+    <string name="edit_text_select_date">Date</string>
+    <string name="periodicity">Periodicity</string>
+    <string name="title_activity_match_list">Choose a Match</string>
+    <string name="button_add_tournament">Add Tournament</string>
+    <string name="edit_text_number_of_teams">Number of teams</string>
+    <string name="title_activity_teams_list">TeamsListActivity</string>
+    <string name="text_view_empty_list">No team entries</string>
 
 
 </resources>

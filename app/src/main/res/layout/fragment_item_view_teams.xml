@@ -4,10 +4,10 @@
     tools:context="com.globant.myleague.ItemViewTournamentFragment"
     android:orientation="horizontal">
 
-    <ImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ivTeam"
+        android:id="@+id/network_image_view_team"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/text_desc_cont_picture_team"
         android:layout_weight="1" />
@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvTeamName"
+        android:id="@+id/text_view_team_name"
         android:layout_weight="2"
         android:layout_gravity="center_vertical" />
 
