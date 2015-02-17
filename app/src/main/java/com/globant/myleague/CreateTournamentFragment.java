@@ -161,30 +161,7 @@ public class CreateTournamentFragment extends Fragment {
                 break;
 
                 case R.id.button_add_tournament:
-                    MyLeagueService myleagueService= new MyLeagueService();
-                    mMyLeagueApiInterface = myleagueService.generateServiceInterface();
-                    Tournaments tournament = new Tournaments();
-                    tournament.setName(mEditTextTournamentName.getText().toString());
-                    tournament.setDateini(mEditTextDatePicker.getText().toString());
-                    tournament.setPeriod(mEditTextPeriod.getText().toString());
-                    tournament.setNumTeams(mEditTextNumberOfTeams.getText().toString());
-                    //TODO set URL image
-//                    tournament.setUrl("");
-
-                    mMyLeagueApiInterface.setTournament(tournament, new Callback<Tournaments>(){
-
-                        @Override
-                        public void success(Tournaments tournaments, Response response) {
-                            if(response.getStatus() == 200) {
-                                Toast.makeText(getActivity(), "TODO: Add Tournament", Toast.LENGTH_SHORT).show();
-                            } else Log.d(LOG_TAG, "bad request: " + response.getUrl());
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-                            Log.d(LOG_TAG, "failure request: " + error.getUrl());
-                        }
-                    });
+                    addTournamentRequest();
                 break;
 
                 case R.id.image_button_take_picture:   Intent intent =new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -194,6 +171,33 @@ public class CreateTournamentFragment extends Fragment {
             }
         }
     };
+
+    private void addTournamentRequest() {
+        MyLeagueService myleagueService= new MyLeagueService();
+        mMyLeagueApiInterface = myleagueService.generateServiceInterface();
+        Tournaments tournament = new Tournaments();
+        tournament.setName(mEditTextTournamentName.getText().toString());
+        tournament.setDateini(mEditTextDatePicker.getText().toString());
+        tournament.setPeriod(mEditTextPeriod.getText().toString());
+        tournament.setNumTeams(mEditTextNumberOfTeams.getText().toString());
+        //TODO set URL image
+//                    tournament.setUrl("");
+
+        mMyLeagueApiInterface.setTournament(tournament, new Callback<Tournaments>(){
+
+            @Override
+            public void success(Tournaments tournaments, Response response) {
+                if(response.getStatus() == 200) {
+                    Toast.makeText(getActivity(), "TODO: Add Tournament", Toast.LENGTH_SHORT).show();
+                } else Log.d(LOG_TAG, "bad request: " + response.getUrl());
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d(LOG_TAG, "failure request: " + error.getUrl());
+            }
+        });
+    }
 
     public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener {

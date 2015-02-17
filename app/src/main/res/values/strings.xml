@@ -54,5 +54,6 @@
     <string name="button_add_tournament">Add Tournament</string>
     <string name="edit_text_number_of_teams">Number of teams</string>
     <string name="title_activity_teams_list">TeamsListActivity</string>
+    <string name="text_view_empty_list">No team entries</string>
 
 </resources>
