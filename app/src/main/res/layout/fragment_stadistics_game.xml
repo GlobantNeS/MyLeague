@@ -52,7 +52,7 @@
             android:ems="10"
             android:id="@+id/etLocalExp"
             android:layout_weight="1"
-            android:hint="@string/text_local_faults"
+            android:hint="@string/text_local_exp"
             android:gravity="center" />
 
     </LinearLayout>
@@ -116,7 +116,7 @@
             android:ems="10"
             android:id="@+id/etVisitExp"
             android:layout_weight="1"
-            android:hint="@string/text_local_faults"
+            android:hint="@string/text_visit_exp"
             android:gravity="center" />
 
     </LinearLayout>
@@ -126,5 +126,6 @@
         android:layout_height="wrap_content"
         android:text="@string/text_save_game"
         android:id="@+id/btSaveGame"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:enabled="false" />
 </LinearLayout>

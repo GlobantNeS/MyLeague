@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -18,6 +16,11 @@
         <activity
             android:name=".SignUpTeamActivity"
             android:label="@string/title_activity_create_tournament" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AddTeamActivity"
@@ -31,11 +34,7 @@
         <activity
             android:name=".PrincipalNewsActivity"
             android:label="@string/label_news">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".SettingsPrincipalActivity"
@@ -54,6 +53,7 @@
             android:name=".CreateTournamentActivity"
             android:label="@string/title_activity_teams_list" >
         </activity>
+        <activity android:name=".MatchesFillActivity"/>
     </application>
 
 </manifest>

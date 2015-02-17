@@ -32,6 +32,8 @@ public class SelectMatchToFillFragment extends ListFragment {
     final static String TOURNAMENT_ID = "TOURNAMENT_ID";
     final static String LOCAL_ID = "LOCAL_ID";
     final static String VISIT_ID = "VISIT_ID";
+    final static String LOCAL_NAME = "LOCAL_NAME";
+    final static String VISIT_NAME = "VISIT_NAME";
 
     public SelectMatchToFillFragment()
     {
@@ -58,10 +60,14 @@ public class SelectMatchToFillFragment extends ListFragment {
                 String selectedTournamentId = selectedMatch.getId();
                 String IdLocal = selectedMatch.getIdLocal();
                 String IdVisit = selectedMatch.getIdVisit();
+                String nameLocal = selectedMatch.getNameLocal();
+                String nameVisit = selectedMatch.getNameVisit();
                 Intent intent = new Intent(getActivity(), MatchesFillActivity.class);
                 intent.putExtra(TOURNAMENT_ID, selectedTournamentId);
                 intent.putExtra(LOCAL_ID, IdLocal);
                 intent.putExtra(VISIT_ID, IdVisit);
+                intent.putExtra(LOCAL_NAME, nameLocal);
+                intent.putExtra(VISIT_NAME, nameVisit);
                 startActivity(intent);
             }
         });

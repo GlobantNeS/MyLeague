@@ -13,23 +13,30 @@ public class MatchesFillActivity extends ActionBarActivity {
     final static String TOURNAMENT_ID = "TOURNAMENT_ID";
     final static String LOCAL_ID = "LOCAL_ID";
     final static String VISIT_ID = "VISIT_ID";
+    final static String LOCAL_NAME = "LOCAL_NAME";
+    final static String VISIT_NAME = "VISIT_NAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches_fill);
         if (savedInstanceState == null) {
-            SelectMatchToFillFragment selectMatchToFill = new SelectMatchToFillFragment();
+            MatchFillFragment matchFillFragment = new MatchFillFragment();
             String tournamentId = getIntent().getStringExtra(TOURNAMENT_ID);
-            String localId = getIntent().getStringExtra(TOURNAMENT_ID);
-            String visitId = getIntent().getStringExtra(TOURNAMENT_ID);
+            String localId = getIntent().getStringExtra(LOCAL_ID);
+            String visitId = getIntent().getStringExtra(VISIT_ID);
+            String localName = getIntent().getStringExtra(LOCAL_NAME);
+            String visitName = getIntent().getStringExtra(VISIT_NAME);
+
             Bundle bundle = new Bundle();
             bundle.putString(TOURNAMENT_ID, tournamentId);
             bundle.putString(LOCAL_ID, localId);
             bundle.putString(VISIT_ID, visitId);
-            selectMatchToFill.setArguments(bundle);
+            bundle.putString(LOCAL_NAME, localName);
+            bundle.putString(VISIT_NAME, visitName);
+            matchFillFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, selectMatchToFill)
+                    .add(R.id.container, matchFillFragment)
                     .commit();
         }
     }
