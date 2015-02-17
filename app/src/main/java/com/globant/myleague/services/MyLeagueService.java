@@ -15,9 +15,6 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
 
-/**
- * Created the first version by kaineras on 16/02/15.
- */
 public class MyLeagueService {
     final static String API_URL = "http://private-a479a-myleague.apiary-mock.com";
     final static String ACCEPTED_DATA = "application/json";
@@ -48,6 +45,9 @@ public class MyLeagueService {
 
         @POST(TEAMS_ENDPOINT)
         void setTeam(@Body Teams team,Callback<Teams> callback);
+
+        @POST(TOURNAMENTS_ENDPOINT)
+        void setTournament(@Body Tournaments tournament, Callback<Tournaments> callback);
     }
 
     public MyLeagueService() {

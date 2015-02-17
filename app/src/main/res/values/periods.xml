@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="periods">
+        <item name="daily">Daily</item>
+        <item name="weekly">Weekly</item>
+        <item name="fortnightly">Fortnightly</item>
+        <item name="monthly">Monthly </item>
+
+    </string-array>
+
+</resources>
