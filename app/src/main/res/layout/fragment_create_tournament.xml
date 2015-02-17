@@ -90,37 +90,49 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_text_second_place_award"
-            android:hint="@string/edit_text_second_place"
+            android:id="@+id/edit_text_number_of_teams"
+            android:hint="@string/edit_text_number_of_teams"
             android:layout_marginTop="30dp"
             android:maxLength="50"
             android:maxLines="0"
             android:lines="1"
             android:inputType="text"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:numeric="integer" />
 
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_text_third_place_award"
-            android:hint="@string/edit_text_third_place"
-            android:layout_marginTop="30dp"
-            android:maxLength="50"
-            android:maxLines="0"
-            android:lines="1"
-            android:inputType="text"
-            android:gravity="center_horizontal" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_add_team"
-            android:id="@+id/button_add_team"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:layout_marginTop="30dp" />
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/image_view_picture"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:contentDescription="@string/text_desc_cont_picture_team" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_button_take_picture"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_image_camera_alt"
+                android:contentDescription="@string/text_desc_cont_camera" />
+        </LinearLayout>
+
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_add_tournament"
+        android:id="@+id/button_add_tournament"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -45,6 +45,9 @@ public class MyLeagueService {
 
         @POST(TEAMS_ENDPOINT)
         void setTeam(@Body Teams team,Callback<Teams> callback);
+
+        @POST(TOURNAMENTS_ENDPOINT)
+        void setTournament(@Body Tournaments tournament, Callback<Tournaments> callback);
     }
 
     public MyLeagueService() {
