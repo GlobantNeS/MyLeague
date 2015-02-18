@@ -82,7 +82,8 @@ public class SignUpTeamFragment extends Fragment {
                             Tools tools=new Tools();
                             tools.setIdUser(getActivity(),teams.getId());
                             Toast.makeText(getActivity(),response.getBody().toString(),Toast.LENGTH_LONG).show();
-                            getActivity().finish();
+                            PrincipalNewsFragment fragment=new PrincipalNewsFragment();
+                            tools.loadFragment(getFragmentManager(),fragment, R.id.rightpane,"NEWS");
                         }
                     }
 

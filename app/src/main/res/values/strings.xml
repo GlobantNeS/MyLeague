@@ -89,4 +89,6 @@
     <string name="default_username">Username</string>
     <string name="default_id">-1</string>
     <string name="text_sign_up_team">Sign Up Team</string>
+    <string name="text_add_my_team_to_tournament">Add My Team to Tournament</string>
+    <string name="text_view_teams">View Teams</string>
 </resources>

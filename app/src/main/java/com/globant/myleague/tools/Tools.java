@@ -54,8 +54,10 @@ public class Tools {
 
     public void setIdUser(Context context,String value) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("id_user_settings",value);
-        editor.commit();
+        if(prefs.getString("id_user_settings",context.getString(R.string.default_id)).equals("-1")) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("id_user_settings", value);
+            editor.commit();
+        }
     }
 }

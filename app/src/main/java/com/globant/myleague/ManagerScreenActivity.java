@@ -44,7 +44,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
         if(settings.get("username").equals(getString(R.string.default_username)))
             callSettings();
         else
-            if(settings.get("id").isEmpty())
+            if(settings.get("id").equals("-1"))
                 tools.loadFragment(getSupportFragmentManager(),new SignUpTeamFragment(),R.id.rightpane,"SIGN UP");
         checkConnection();
     }
@@ -58,7 +58,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
             if(settings.get("username").equals(MYLEAGUE))
                 tools.setIdUser(this,"0");
             else
-                if(settings.get("id").isEmpty())
+                if(settings.get("id").equals("-1"))
                     tools.loadFragment(getSupportFragmentManager(),new SignUpTeamFragment(),R.id.rightpane,"SIGN UP");
         }
     }

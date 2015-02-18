@@ -13,8 +13,10 @@ import android.widget.ListView;
 
 import com.globant.myleague.adapter.LinkAdapterMenu;
 import com.globant.myleague.pojo.OptionsMenu;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -23,6 +25,9 @@ import java.util.List;
  */
 public class menuFragment extends Fragment {
 
+
+    HashMap<String,String> settings;
+    Tools tools = new Tools();
 
     private List<OptionsMenu> optionList = new ArrayList<>();
 
@@ -33,6 +38,7 @@ public class menuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        settings=tools.getPreferences(getActivity());
         init();
     }
 
@@ -66,9 +72,14 @@ public class menuFragment extends Fragment {
 
     private void init() {
         optionList.add(new OptionsMenu(getString(R.string.text_news),"NEWS",R.drawable.ic_action_action_language));
-        optionList.add(new OptionsMenu(getString(R.string.text_create_tournament),"CREATE TOURNAMENT",R.drawable.ic_action_social_person));
-        optionList.add(new OptionsMenu(getString(R.string.text_sign_up_team),"SIGN UP TEAM",R.drawable.ic_action_social_person));
-        optionList.add(new OptionsMenu(getString(R.string.text_add_teams_to_tournament),"ADD TEAMS TO TOURNAMENT",R.drawable.ic_action_communication_email));
+        if(settings.get("id").equals("0"))
+            optionList.add(new OptionsMenu(getString(R.string.text_create_tournament),"CREATE TOURNAMENT",R.drawable.ic_action_social_person));
+        if(settings.get("id").equals("-1") || settings.get("id").equals("0"))
+            optionList.add(new OptionsMenu(getString(R.string.text_sign_up_team),"SIGN UP TEAM",R.drawable.ic_action_social_person));
+        if(settings.get("id").equals("0"))
+            optionList.add(new OptionsMenu(getString(R.string.text_add_teams_to_tournament),"ADD TEAMS TO TOURNAMENT",R.drawable.ic_action_communication_email));
+        optionList.add(new OptionsMenu(getString(R.string.text_add_my_team_to_tournament),"ADD MY TEAM TO TOURNAMENT",R.drawable.ic_action_communication_email));
+        optionList.add(new OptionsMenu(getString(R.string.text_view_teams),"VIEW TEAMS",R.drawable.ic_action_communication_email));
         optionList.add(new OptionsMenu(getString(R.string.text_contact),"CONTACT",R.drawable.ic_action_communication_email));
     }
 
