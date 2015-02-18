@@ -1,6 +1,7 @@
 package com.globant.myleague;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -29,6 +30,10 @@ public class SelectMatchToFillFragment extends ListFragment {
 
     final static String LOG_TAG = SelectTournamentToMatchFragment.class.getSimpleName();
     final static String TOURNAMENT_ID = "TOURNAMENT_ID";
+    final static String LOCAL_ID = "LOCAL_ID";
+    final static String VISIT_ID = "VISIT_ID";
+    final static String LOCAL_NAME = "LOCAL_NAME";
+    final static String VISIT_NAME = "VISIT_NAME";
 
     public SelectMatchToFillFragment()
     {
@@ -51,11 +56,19 @@ public class SelectMatchToFillFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Matches selectedMatch = (Matches)mAdapter.getItem(position);
+                Matches selectedMatch = mAdapter.getItem(position);
                 String selectedTournamentId = selectedMatch.getId();
-                //Intent intent = new Intent(getActivity(), MatchesListActivity.class);
-                //intent.putExtra(MatchesListActivity.TOURNAMENT_ID, selectedTournamentId);
-                //startActivity(intent);
+                String IdLocal = selectedMatch.getIdLocal();
+                String IdVisit = selectedMatch.getIdVisit();
+                String nameLocal = selectedMatch.getNameLocal();
+                String nameVisit = selectedMatch.getNameVisit();
+                Intent intent = new Intent(getActivity(), MatchesFillActivity.class);
+                intent.putExtra(TOURNAMENT_ID, selectedTournamentId);
+                intent.putExtra(LOCAL_ID, IdLocal);
+                intent.putExtra(VISIT_ID, IdVisit);
+                intent.putExtra(LOCAL_NAME, nameLocal);
+                intent.putExtra(VISIT_NAME, nameVisit);
+                startActivity(intent);
             }
         });
     }

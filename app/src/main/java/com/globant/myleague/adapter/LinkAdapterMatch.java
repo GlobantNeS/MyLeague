@@ -67,12 +67,18 @@ public class LinkAdapterMatch extends ArrayAdapter<Matches>{
         final NetworkImageView nivVisitant = (NetworkImageView)v.findViewById(R.id.nivVisitant);
         final TextView tvLocalName = (TextView)v.findViewById(R.id.tvLocalName);
         final TextView tvVisitName = (TextView)v.findViewById(R.id.tvVisitantName);
+        final TextView tvDateMatch = (TextView)v.findViewById(R.id.tvDateMatch);
 
         String idLocal=matchesList.get(position).getIdLocal();
         loadDataLocalTeam(nivLocal, tvLocalName, idLocal);
 
         String idVisit=matchesList.get(position).getIdVisit();
         loadDataVisit(nivVisitant, tvVisitName, idVisit);
+
+        String dateMatch = matchesList.get(position).getDateMatch();
+        tvDateMatch.setText(dateMatch);
+
+
 
         return v;
     }

@@ -3,15 +3,13 @@
     package="com.globant.myleague" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/nullString"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".TeamsListActivity"
+            android:name=".TournamentListActivity"
             android:label="@string/label_news" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,16 +18,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PrincipalNewsActivity"
-            android:label="@string/app_name" >
+            android:name=".SignUpTeamActivity"
+            android:label="@string/title_activity_create_tournament" >
+
         </activity>
         <activity
-            android:name=".TournamentListActivity"
+            android:name=".TeamsListActivity"
             android:label="@string/title_activity_create_tournament" >
         </activity>
         <activity
             android:name=".MatchResultActivity"
             android:label="@string/title_activity_match_result" >
+
+        </activity>
+        <activity
+            android:name=".PrincipalNewsActivity"
+            android:label="@string/label_news">
+
         </activity>
         <activity
             android:name=".SettingsPrincipalActivity"
@@ -45,16 +50,22 @@
             android:label="@string/title_activity_match_list" >
         </activity>
         <activity
-            android:name=".SignUpTeamActivity"
-            android:label="@string/title_activity_teams_list" >
-        </activity>
-        <activity
             android:name=".CreateTournamentActivity"
             android:label="@string/title_activity_create_team" >
         </activity>
         <activity
             android:name=".CreateTeamActivity"
             android:label="@string/title_activity_tournament_list" >
+            </activity>
+        <activity android:name=".MatchesFillActivity"/>
+        <activity android:name=".AddMyTeamToTournamentActivity"/>
+        <activity android:name=".SelectTournamentToMatchActivity"/>
+        <activity android:name=".SelectTournamentToSignUpActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
     </application>
 

@@ -1,23 +1,32 @@
 package com.globant.myleague;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SignUpTeamActivity extends ActionBarActivity {
+/**
+ * Created the first version by kaineras on 17/02/15.
+ */
+public class AddMyTeamToTournamentActivity extends ActionBarActivity {
+
+    final static String TOURNAMENT_ID = "TOURNAMENT_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_team);
+        setContentView(R.layout.activity_tournament_teams);
         if (savedInstanceState == null) {
+            AddMyTeamToTournamentFragment addMyTeamToTournamentFragment= new AddMyTeamToTournamentFragment();
+            String tournamentId = getIntent().getStringExtra(TOURNAMENT_ID);
+            Bundle bundle = new Bundle();
+            bundle.putString(TOURNAMENT_ID, tournamentId);
+            addMyTeamToTournamentFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new SignUpTeamFragment())
+                    .add(R.id.container, addMyTeamToTournamentFragment)
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,5 +49,4 @@ public class SignUpTeamActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
