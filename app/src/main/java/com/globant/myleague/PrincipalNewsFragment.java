@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import com.globant.myleague.adapter.MatchStatisticsAdapter;
 import com.globant.myleague.adapter.NewsAdapter;
 import com.globant.myleague.pojo.Matches;
+import com.globant.myleague.pojo.News;
 import com.globant.myleague.services.NewsService;
 
 import java.util.ArrayList;
@@ -74,12 +75,28 @@ public class PrincipalNewsFragment extends ListFragment {
             default:  prepareListviewMatches();
         }
 
+
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                showViewByItem(position);
             }
         });
+    }
+
+    private void showViewByItem(int position) {
+        if(getListView().getAdapter() instanceof NewsAdapter){
+            Log.w(LOG_TAG, "Clic en lista New General");
+            News news = mAdapterListNews.getItem(position);
+            if(news.getIdNews().equals("2")){
+                Log.w(LOG_TAG, "Click en Partido");
+            }else if(news.getIdNews().equals("1")){
+                Log.w(LOG_TAG, "Click en News");
+            }
+        }
+        if(getListView().getAdapter() instanceof MatchStatisticsAdapter){
+            Log.w(LOG_TAG, "Click en Partido" );
+        }
     }
 
     @Override

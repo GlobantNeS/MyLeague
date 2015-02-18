@@ -47,4 +47,5 @@ public class News {
         return titleNews;
     }
 
+
 }
