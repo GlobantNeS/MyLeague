@@ -52,12 +52,9 @@ public class AddMyTeamToTournamentFragment extends Fragment{
         mMyLeagueApiInterface.getTeamsInTournament(id,new Callback<List<TeamsInTournaments>>() {
             @Override
             public void success(List<TeamsInTournaments> teamsInTournamentses, Response response) {
+                mAdapter.clear();
                 for(TeamsInTournaments t:teamsInTournamentses)
                     loadDataTeam(t.getIdTeam());
-                mAdapter.clear();
-                mAdapter.addAll(teamsList);
-                mAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -79,6 +76,8 @@ public class AddMyTeamToTournamentFragment extends Fragment{
             public void success(Teams teams, Response response) {
                 if(teams!=null) {
                     teamsList.add(teams);
+                    //mAdapter.add(teams);
+                    mAdapter.notifyDataSetChanged();
                 }
             }
             @Override
