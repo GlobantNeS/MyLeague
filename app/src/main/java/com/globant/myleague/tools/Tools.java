@@ -1,6 +1,9 @@
 package com.globant.myleague.tools;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -23,5 +26,14 @@ public class Tools {
         mRequestQueue = Volley.newRequestQueue(context);
         imageLoader = new ImageLoader(mRequestQueue,new BitmapLruCache(BitmapLruCache.getDefaultLruCacheSize()));
         nivComic.setImageUrl(url,imageLoader);
+    }
+
+    public void loadFragment(FragmentManager fm,Fragment f,int container,String namestack)
+    {
+        FragmentTransaction fragmentTransaction;
+        fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.addToBackStack(namestack);
+        fragmentTransaction.replace(container, f);
+        fragmentTransaction.commit();
     }
 }

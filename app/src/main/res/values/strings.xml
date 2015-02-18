@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <string name="app_name">My League</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -69,6 +70,11 @@
     <string name="text_view_empty_list">No team entries</string>
     <string name="text_local_exp">Local Exp</string>
     <string name="text_visit_exp">Visit Exp</string>
-
-
+    <string name="text_news">News</string>
+    <string name="text_create_tournament">Create Tournament</string>
+    <string name="text_add_teams_to_tournament">Add Teams to Tournament</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_name_app">My League</string>
+    <string name="text_desc_ico">Image Icon</string>
+    <string name="text_check_connection">Please Check your Internet Connection</string>
 </resources>
