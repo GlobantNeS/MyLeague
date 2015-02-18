@@ -3,9 +3,11 @@ package com.globant.myleague;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,17 +24,51 @@ import java.util.HashMap;
 public class ManagerScreenActivity extends ActionBarActivity implements menuFragment.OptionsMenuListener{
 
 
+    final static String MYLEAGUE = "MYLEAGUE";
+
     PagerEnabledSlidingPaneLayout slidingPaneLayout;
     Tools tools=new Tools();
-    HashMap<String,String > settings;
+    HashMap<String,String> settings;
+    ConnectivityManager connMgr;
+    NetworkInfo networkInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeCheckNetwork();
         setContentView(R.layout.activity_manager_screens);
         prepareToolbar();
         prepareSlide();
-        //settings=tools.getPreferences(this);
+        settings=tools.getPreferences(this);
+        if(settings.get("username").equals(getString(R.string.default_username))) {
+            callSettings();
+            settings=tools.getPreferences(this);
+            if(settings.get("username").equals(MYLEAGUE))
+                setIdUser("0");
+        }
+        checkConnection();
+    }
+
+    private void setIdUser(String value) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("id_user_settings",value);
+        editor.commit();
+    }
+
+    private void checkConnection() {
+        if (networkInfo != null && networkInfo.isConnected()) {
+            PrincipalNewsFragment fragment=new PrincipalNewsFragment();
+            tools.loadFragment(getSupportFragmentManager(),fragment, R.id.rightpane,"NEWS");
+        } else {
+            createAlert(getString(R.string.text_check_connection));
+        }
+    }
+
+    private void initializeCheckNetwork() {
+        connMgr = (ConnectivityManager)
+                getSystemService(CONNECTIVITY_SERVICE);
+        networkInfo = connMgr.getActiveNetworkInfo();
     }
 
     public void createAlert(String message)
@@ -96,8 +132,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
         switch (id)
         {
             case R.id.action_settings:
-                /*Intent intent=new Intent(PillisActivity.this,SettingsActivity.class);
-                startActivity(intent);*/
+                callSettings();
                 handler=true;
                 break;
             case android.R.id.home:
@@ -117,6 +152,11 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
         return handler;
     }
 
+    private void callSettings() {
+        Intent intent = new Intent(ManagerScreenActivity.this,SettingsMainActivity.class);
+        startActivity(intent);
+    }
+
     private void openPane() {
         slidingPaneLayout.openPane();
         getSupportActionBar().setHomeAsUpIndicator(android.R.drawable.arrow_down_float);
@@ -129,17 +169,9 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
     @Override
     public void OptionsMenuListener(String optionMenu) {
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         switch (optionMenu) {
             case "NEWS":
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    PrincipalNewsFragment fragment=new PrincipalNewsFragment();
-                    tools.loadFragment(getSupportFragmentManager(),fragment,R.id.rightpane,"NEWS");
-                } else {
-                    createAlert(getString(R.string.text_check_connection));
-                }
+                checkConnection();
                 break;
             case "COMIC":
                 if (networkInfo != null && networkInfo.isConnected()) {
@@ -168,12 +200,12 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
                 break;
             case "CONTACT":
-                /*Intent intent=new Intent(Intent.ACTION_SEND);
+                Intent intent=new Intent(Intent.ACTION_SEND);
                 intent.setType("plain/text");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"pilliadv@hotmail.com"});
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"myleague@hotmail.com"});
                 intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.text_subject_email));
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.text_body_mail));
-                startActivity(Intent.createChooser(intent, getString(R.string.text_send_email)));*/
+                startActivity(Intent.createChooser(intent, getString(R.string.text_send_email)));
                 break;
             default:
                 break;
