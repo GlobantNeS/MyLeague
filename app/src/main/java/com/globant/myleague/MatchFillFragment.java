@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.services.MyLeagueService;
@@ -83,7 +84,8 @@ public class MatchFillFragment extends Fragment {
                 mMyLeagueApiInterface.updateMatch(matches,new Callback<Matches>() {
                     @Override
                     public void success(Matches matches, Response response) {
-                        //response.getStatus();
+                        if(response.getStatus()==200)
+                            Toast.makeText(getActivity(),String.valueOf(response.getStatus()),Toast.LENGTH_LONG).show();
                     }
 
                     @Override
