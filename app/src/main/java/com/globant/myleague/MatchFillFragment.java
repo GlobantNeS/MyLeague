@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -48,6 +49,8 @@ public class MatchFillFragment extends Fragment {
     private Button btSaveGame;
 
     private Matches matches;
+
+    Tools tools = new Tools();
 
     MyLeagueService.ApiInterface mMyLeagueApiInterface;
 
@@ -84,8 +87,10 @@ public class MatchFillFragment extends Fragment {
                 mMyLeagueApiInterface.updateMatch(matches,new Callback<Matches>() {
                     @Override
                     public void success(Matches matches, Response response) {
-                        if(response.getStatus()==200)
-                            Toast.makeText(getActivity(),String.valueOf(response.getStatus()),Toast.LENGTH_LONG).show();
+                        if(response.getStatus()==200) {
+                            Toast.makeText(getActivity(), getString(R.string.text_sucessfull_fill_match), Toast.LENGTH_LONG).show();
+                            tools.loadFragment(getFragmentManager(),new PrincipalNewsFragment(), R.id.rightpane,"NEWS");
+                        }
                     }
 
                     @Override

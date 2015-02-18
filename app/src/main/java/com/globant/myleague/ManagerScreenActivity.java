@@ -186,17 +186,17 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
                     checkConnection(new SignUpTeamFragment(),"SIGN UP TEAM");
                 break;
             case "ADD TEAMS TO TOURNAMENT":
+                //TODO
                 checkConnection(new SignUpTeamFragment(),"ADD TEAMS TO TOURNAMENT");
-
                 break;
             case "ADD MY TEAM TO TOURNAMENT":
-                checkConnection(new AddMyTeamToTournamentFragment(),"ADD MY TEAM TO TOURNAMENT");
-
+                checkConnection(new SelectTournamentToSignUpFragment(),"ADD MY TEAM TO TOURNAMENT");
                 break;
             case "FILL STATISTICS":
                 checkConnection(new SelectTournamentToMatchFragment(),"FILL STATISTICS");
                 break;
             case "VIEW TEAMS":
+                //TODO
                 checkConnection(new SignUpTeamFragment(),"VIEW TEAMS");
                 break;
             case "CONTACT":

@@ -1,7 +1,6 @@
 package com.globant.myleague;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -13,6 +12,7 @@ import android.widget.ArrayAdapter;
 import com.globant.myleague.adapter.LinkAdapterMatch;
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,8 @@ public class SelectMatchToFillFragment extends ListFragment {
     final static String VISIT_ID = "VISIT_ID";
     final static String LOCAL_NAME = "LOCAL_NAME";
     final static String VISIT_NAME = "VISIT_NAME";
+
+    Tools tools = new Tools();
 
     public SelectMatchToFillFragment()
     {
@@ -62,13 +64,24 @@ public class SelectMatchToFillFragment extends ListFragment {
                 String IdVisit = selectedMatch.getIdVisit();
                 String nameLocal = selectedMatch.getNameLocal();
                 String nameVisit = selectedMatch.getNameVisit();
-                Intent intent = new Intent(getActivity(), MatchesFillActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putString(TOURNAMENT_ID, selectedTournamentId);
+                bundle.putString(LOCAL_ID, IdLocal);
+                bundle.putString(VISIT_ID, IdVisit);
+                bundle.putString(LOCAL_NAME, nameLocal);
+                bundle.putString(VISIT_NAME, nameVisit);
+                MatchFillFragment matchFillFragment = new MatchFillFragment();
+                matchFillFragment.setArguments(bundle);
+                tools.loadFragment(getFragmentManager(),matchFillFragment,R.id.rightpane,"YES");
+
+                /*Intent intent = new Intent(getActivity(), MatchesFillActivity.class);
                 intent.putExtra(TOURNAMENT_ID, selectedTournamentId);
                 intent.putExtra(LOCAL_ID, IdLocal);
                 intent.putExtra(VISIT_ID, IdVisit);
                 intent.putExtra(LOCAL_NAME, nameLocal);
                 intent.putExtra(VISIT_NAME, nameVisit);
-                startActivity(intent);
+                startActivity(intent);*/
             }
         });
     }

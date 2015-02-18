@@ -39,7 +39,8 @@ public class Tools {
     {
         FragmentTransaction fragmentTransaction;
         fragmentTransaction = fm.beginTransaction();
-        //fragmentTransaction.addToBackStack(namestack);
+        if(namestack.equals("YES"))
+            fragmentTransaction.addToBackStack(namestack);
         fragmentTransaction.replace(container, f);
         fragmentTransaction.commit();
     }

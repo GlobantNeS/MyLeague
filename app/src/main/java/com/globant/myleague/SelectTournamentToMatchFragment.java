@@ -1,7 +1,6 @@
 package com.globant.myleague;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +11,7 @@ import android.widget.ArrayAdapter;
 import com.globant.myleague.adapter.LinkAdapterTournament;
 import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ public class SelectTournamentToMatchFragment extends ListFragment {
 
     MyLeagueService.ApiInterface mMyLeagueApiInterface;
     ArrayAdapter<Tournaments> mAdapter;
+    Tools tools = new Tools();
 
     final static String LOG_TAG = SelectTournamentToMatchFragment.class.getSimpleName();
 
@@ -52,11 +53,13 @@ public class SelectTournamentToMatchFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Tournaments selectedTournament = (Tournaments)mAdapter.getItem(position);
+                Tournaments selectedTournament = mAdapter.getItem(position);
                 String selectedTournamentId = selectedTournament.getId();
-                Intent intent = new Intent(getActivity(), MatchesListActivity.class);
-                intent.putExtra(MatchesListActivity.TOURNAMENT_ID, selectedTournamentId);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(MatchesListActivity.TOURNAMENT_ID, selectedTournamentId);
+                SelectMatchToFillFragment selectMatchToFillFragment = new SelectMatchToFillFragment();
+                selectMatchToFillFragment.setArguments(bundle);
+                tools.loadFragment(getFragmentManager(),selectMatchToFillFragment,R.id.rightpane,"YES");
             }
         });
 
