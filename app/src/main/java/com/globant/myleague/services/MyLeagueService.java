@@ -58,7 +58,7 @@ public class MyLeagueService {
         @GET(MATCHES_TOURNAMENT_ENDPOINT)
         void getMatchesForTournament(@Path("id") String id,Callback<List<Matches>> callback);
 
-        @POST(TEAMS_ENDPOINT)
+        @POST(TEAM_ENDPOINT)
         void setTeam(@Body Teams team,Callback<Teams> callback);
 
         @POST(MATCHES_ENDPOINT)
