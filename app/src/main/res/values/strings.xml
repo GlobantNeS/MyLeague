@@ -51,9 +51,9 @@
     <string name="title_activity_principal_news">PrincipalNewsActivity</string>
     <string name="text_view_score_local_ppal">0</string>
     <string name="text_view_score_away_ppal">0</string>
-    <string name="text_view_name_away_ppal" />
-    <string name="text_view_name_local_ppal" />
-    <string name="nullString" />
+    <string name="text_view_name_away_ppal"></string>
+    <string name="text_view_name_local_ppal"></string>
+    <string name="nullString"></string>
     <string name="label_news">News</string>
     <string name="action_add_filter_news">Filter preferences</string>
     <string name="pref_filter_news">Filter preferences</string>
@@ -67,6 +67,8 @@
     <string name="edit_text_number_of_teams">Number of teams</string>
     <string name="title_activity_teams_list">TeamsListActivity</string>
     <string name="text_view_empty_list">No team entries</string>
-
+    <string name="action_add_team">Add team</string>
+    <string name="title_activity_create_team">CreateTeamActivity</string>
+    <string name="title_activity_tournament_list">TournamentListActivity</string>
 
 </resources>

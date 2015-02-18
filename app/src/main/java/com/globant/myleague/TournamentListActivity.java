@@ -1,19 +1,19 @@
 package com.globant.myleague;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SignUpTeamActivity extends ActionBarActivity {
+public class TournamentListActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_team);
+        setContentView(R.layout.activity_tournament_list);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new SelectTournamentToMatchFragment())
+                    .add(R.id.container, new TournamentsListFragment())
                     .commit();
         }
     }
@@ -22,7 +22,7 @@ public class SignUpTeamActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sign_in_team, menu);
+        getMenuInflater().inflate(R.menu.menu_tournament_list, menu);
         return true;
     }
 
