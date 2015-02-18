@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -46,7 +47,8 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
         else
             if(settings.get("id").equals("-1"))
                 tools.loadFragment(getSupportFragmentManager(),new SignUpTeamFragment(),R.id.rightpane,"SIGN UP");
-        checkConnection();
+        PrincipalNewsFragment fragment=new PrincipalNewsFragment();
+        checkConnection(fragment,"NEWS");
     }
 
     @Override
@@ -65,10 +67,9 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
 
 
-    private void checkConnection() {
+    private void checkConnection(Fragment fragment,String value) {
         if (networkInfo != null && networkInfo.isConnected()) {
-            PrincipalNewsFragment fragment=new PrincipalNewsFragment();
-            tools.loadFragment(getSupportFragmentManager(),fragment, R.id.rightpane,"NEWS");
+            tools.loadFragment(getSupportFragmentManager(),fragment, R.id.rightpane,value);
         } else {
             createAlert(getString(R.string.text_check_connection));
         }
@@ -125,17 +126,13 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+         int id = item.getItemId();
         boolean handler;
 
         switch (id)
@@ -180,23 +177,27 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
     public void OptionsMenuListener(String optionMenu) {
         switch (optionMenu) {
             case "NEWS":
-                checkConnection();
+                checkConnection(new PrincipalNewsFragment(),"NEWS");
+                break;
+            case "CREATE TOURNAMENT":
+                checkConnection(new CreateTournamentFragment(),"CREATE TOURNAMENT");
                 break;
             case "SIGN UP TEAM":
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    SignUpTeamFragment fragment=new SignUpTeamFragment();
-                    tools.loadFragment(getSupportFragmentManager(),fragment, R.id.rightpane,"SIGN UP TEAM");
-                } else {
-                    createAlert(getString(R.string.text_check_connection));
-                }
+                    checkConnection(new SignUpTeamFragment(),"SIGN UP TEAM");
                 break;
-            case "ABOUT":
-                if (networkInfo != null && networkInfo.isConnected()) {
-                    //tools.loadFragment(getSupportFragmentManager(), new AboutFragment(), R.id.rightpane, "ABOUT");
-                } else {
-                    createAlert(getString(R.string.text_check_connection));
-                }
+            case "ADD TEAMS TO TOURNAMENT":
+                checkConnection(new SignUpTeamFragment(),"ADD TEAMS TO TOURNAMENT");
 
+                break;
+            case "ADD MY TEAM TO TOURNAMENT":
+                checkConnection(new AddMyTeamToTournamentFragment(),"ADD MY TEAM TO TOURNAMENT");
+
+                break;
+            case "FILL STATISTICS":
+                checkConnection(new SelectTournamentToMatchFragment(),"FILL STATISTICS");
+                break;
+            case "VIEW TEAMS":
+                checkConnection(new SignUpTeamFragment(),"VIEW TEAMS");
                 break;
             case "CONTACT":
                 Intent intent=new Intent(Intent.ACTION_SEND);

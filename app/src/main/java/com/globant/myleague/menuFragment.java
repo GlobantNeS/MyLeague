@@ -74,6 +74,8 @@ public class menuFragment extends Fragment {
         optionList.add(new OptionsMenu(getString(R.string.text_news),"NEWS",R.drawable.ic_action_action_language));
         if(settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_create_tournament),"CREATE TOURNAMENT",R.drawable.ic_action_social_person));
+        if(settings.get("id").equals("0"))
+            optionList.add(new OptionsMenu(getString(R.string.text_fill_statistics),"FILL STATISTICS",R.drawable.ic_action_social_person));
         if(settings.get("id").equals("-1") || settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_sign_up_team),"SIGN UP TEAM",R.drawable.ic_action_social_person));
         if(settings.get("id").equals("0"))
