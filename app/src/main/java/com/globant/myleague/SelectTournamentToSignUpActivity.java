@@ -1,21 +1,20 @@
 package com.globant.myleague;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.globant.myleague.SelectTournamentToMatchFragment;
 
 
-public class SignUpTeamActivity extends ActionBarActivity {
+public class SelectTournamentToSignUpActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_team);
+        setContentView(R.layout.activity_select_tournament_to_signup);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new SignUpTeamFragment())
+                    .add(R.id.container, new SelectTournamentToSignUpFragment())
                     .commit();
         }
     }

@@ -16,11 +16,7 @@
         <activity
             android:name=".SignUpTeamActivity"
             android:label="@string/title_activity_create_tournament" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".AddTeamActivity"
@@ -54,6 +50,15 @@
             android:label="@string/title_activity_teams_list" >
         </activity>
         <activity android:name=".MatchesFillActivity"/>
+        <activity android:name=".AddMyTeamToTournamentActivity"/>
+        <activity android:name=".SelectTournamentToMatchActivity"/>
+        <activity android:name=".SelectTournamentToSignUpActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
