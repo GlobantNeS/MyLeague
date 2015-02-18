@@ -80,7 +80,8 @@ public class menuFragment extends Fragment {
             optionList.add(new OptionsMenu(getString(R.string.text_sign_up_team),"SIGN UP TEAM",R.drawable.ic_action_social_person));
         if(settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_add_teams_to_tournament),"ADD TEAMS TO TOURNAMENT",R.drawable.ic_action_communication_email));
-        optionList.add(new OptionsMenu(getString(R.string.text_add_my_team_to_tournament),"ADD MY TEAM TO TOURNAMENT",R.drawable.ic_action_communication_email));
+        if(!settings.get("id").equals("0"))
+            optionList.add(new OptionsMenu(getString(R.string.text_add_my_team_to_tournament),"ADD MY TEAM TO TOURNAMENT",R.drawable.ic_action_communication_email));
         optionList.add(new OptionsMenu(getString(R.string.text_view_teams),"VIEW TEAMS",R.drawable.ic_action_communication_email));
         optionList.add(new OptionsMenu(getString(R.string.text_contact),"CONTACT",R.drawable.ic_action_communication_email));
     }

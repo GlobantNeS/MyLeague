@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import com.globant.myleague.adapter.LinkAdapterTournament;
 import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ public class SelectTournamentToSignUpFragment extends ListFragment {
 
     MyLeagueService.ApiInterface mMyLeagueApiInterface;
     ArrayAdapter<Tournaments> mAdapter;
+
+    Tools tools = new Tools();
 
     final static String LOG_TAG = SelectTournamentToSignUpFragment.class.getSimpleName();
 
@@ -46,7 +49,7 @@ public class SelectTournamentToSignUpFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        List<Tournaments> tournamentsList = new ArrayList<>();
+        final List<Tournaments> tournamentsList = new ArrayList<>();
         mAdapter = new LinkAdapterTournament(getActivity(),R.layout.fragment_item_view_tournament,tournamentsList);
         setListAdapter(mAdapter);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -54,9 +57,11 @@ public class SelectTournamentToSignUpFragment extends ListFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Tournaments selectedTournament = mAdapter.getItem(position);
                 String selectedTournamentId = selectedTournament.getId();
-                Intent intent = new Intent(getActivity(), AddMyTeamToTournamentActivity.class);
-                intent.putExtra(MatchesListActivity.TOURNAMENT_ID, selectedTournamentId);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(MatchesListActivity.TOURNAMENT_ID, selectedTournamentId);
+                AddMyTeamToTournamentFragment addMyTeamToTournamentFragment = new AddMyTeamToTournamentFragment();
+                addMyTeamToTournamentFragment.setArguments(bundle);
+                tools.loadFragment(getFragmentManager(),addMyTeamToTournamentFragment,R.id.rightpane,"YES");
             }
         });
 

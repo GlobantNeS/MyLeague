@@ -35,7 +35,8 @@ public class MyLeagueService {
     final static String TOURNAMENTS_ID_ENDPOINT = "/tournaments/{id}";
     final static String MATCHES_ENDPOINT = "/matches";
     final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}";
-    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournament/{id}";
+    final static String TEAMS_TOURNAMENT_ID_ENDPOINT = "/teamsintournament/{id}";
+    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournament";
 
     public interface ApiInterface {
 
@@ -69,7 +70,10 @@ public class MyLeagueService {
         @PATCH(MATCHES_ENDPOINT)
         void updateMatch(@Body Matches matches,Callback<Matches> callback);
 
-        @GET(TEAMS_TOURNAMENT_ENDPOINT)
+        @POST(TEAMS_TOURNAMENT_ENDPOINT)
+        void addTeamToTournament(@Body TeamsInTournaments teamsInTournaments,Callback<TeamsInTournaments> callback);
+
+        @GET(TEAMS_TOURNAMENT_ID_ENDPOINT)
         void getTeamsInTournament(@Path("id") String id,Callback<List<TeamsInTournaments>> callback);
     }
 
