@@ -39,7 +39,7 @@ public class Tools {
     {
         FragmentTransaction fragmentTransaction;
         fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.addToBackStack(namestack);
+        //fragmentTransaction.addToBackStack(namestack);
         fragmentTransaction.replace(container, f);
         fragmentTransaction.commit();
     }
@@ -50,5 +50,12 @@ public class Tools {
         settings.put("username",prefs.getString("username_settings",context.getString(R.string.default_username)));
         settings.put("id",prefs.getString("id_user_settings",context.getString(R.string.default_id)));
         return  settings;
+    }
+
+    public void setIdUser(Context context,String value) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("id_user_settings",value);
+        editor.commit();
     }
 }

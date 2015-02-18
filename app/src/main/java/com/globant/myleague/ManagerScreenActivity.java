@@ -25,6 +25,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
 
     final static String MYLEAGUE = "MYLEAGUE";
+    final static int REQUEST_CODE_SETTINGS =0;
 
     PagerEnabledSlidingPaneLayout slidingPaneLayout;
     Tools tools=new Tools();
@@ -40,21 +41,29 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
         prepareToolbar();
         prepareSlide();
         settings=tools.getPreferences(this);
-        if(settings.get("username").equals(getString(R.string.default_username))) {
+        if(settings.get("username").equals(getString(R.string.default_username)))
             callSettings();
-            settings=tools.getPreferences(this);
-            if(settings.get("username").equals(MYLEAGUE))
-                setIdUser("0");
-        }
+        else
+            if(settings.get("id").isEmpty())
+                tools.loadFragment(getSupportFragmentManager(),new SignUpTeamFragment(),R.id.rightpane,"SIGN UP");
         checkConnection();
     }
 
-    private void setIdUser(String value) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("id_user_settings",value);
-        editor.commit();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_CODE_SETTINGS)
+        {
+            settings=tools.getPreferences(this);
+            if(settings.get("username").equals(MYLEAGUE))
+                tools.setIdUser(this,"0");
+            else
+                if(settings.get("id").isEmpty())
+                    tools.loadFragment(getSupportFragmentManager(),new SignUpTeamFragment(),R.id.rightpane,"SIGN UP");
+        }
     }
+
+
 
     private void checkConnection() {
         if (networkInfo != null && networkInfo.isConnected()) {
@@ -154,7 +163,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
     private void callSettings() {
         Intent intent = new Intent(ManagerScreenActivity.this,SettingsMainActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE_SETTINGS);
     }
 
     private void openPane() {
@@ -173,20 +182,10 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
             case "NEWS":
                 checkConnection();
                 break;
-            case "COMIC":
+            case "SIGN UP TEAM":
                 if (networkInfo != null && networkInfo.isConnected()) {
-                    /*ComicFragment fragment=new ComicFragment();
-                    Bundle bundle=new Bundle();
-                    if(settings.get("save").equals("0")) {
-                        bundle.putBoolean("PAGE",false);
-                        fragment.setArguments(bundle);
-                        tools.loadFragment(getSupportFragmentManager(), fragment, R.id.rightpane, "COMIC");
-                    }
-                    else {
-                        bundle.putBoolean("PAGE",true);
-                        fragment.setArguments(bundle);
-                        tools.loadFragment(getSupportFragmentManager(), fragment, R.id.rightpane, "COMIC");
-                    }*/
+                    SignUpTeamFragment fragment=new SignUpTeamFragment();
+                    tools.loadFragment(getSupportFragmentManager(),fragment, R.id.rightpane,"SIGN UP TEAM");
                 } else {
                     createAlert(getString(R.string.text_check_connection));
                 }

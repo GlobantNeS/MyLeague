@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -72,10 +74,13 @@ public class SignUpTeamFragment extends Fragment {
                 team.setManager(etManager.getText().toString());
                 team.setEmail(etEmail.getText().toString());
                 team.setPhone(etPhone.getText().toString());
+                team.setUrl("");
                 mMyLeagueApiInterface.setTeam(team,new Callback<Teams>() {
                     @Override
                     public void success(Teams teams, Response response) {
                         if (response.getStatus() == 201) {
+                            Tools tools=new Tools();
+                            tools.setIdUser(getActivity(),teams.getId());
                             Toast.makeText(getActivity(),response.getBody().toString(),Toast.LENGTH_LONG).show();
                             getActivity().finish();
                         }

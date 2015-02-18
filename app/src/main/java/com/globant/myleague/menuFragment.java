@@ -67,6 +67,7 @@ public class menuFragment extends Fragment {
     private void init() {
         optionList.add(new OptionsMenu(getString(R.string.text_news),"NEWS",R.drawable.ic_action_action_language));
         optionList.add(new OptionsMenu(getString(R.string.text_create_tournament),"CREATE TOURNAMENT",R.drawable.ic_action_social_person));
+        optionList.add(new OptionsMenu(getString(R.string.text_sign_up_team),"SIGN UP TEAM",R.drawable.ic_action_social_person));
         optionList.add(new OptionsMenu(getString(R.string.text_add_teams_to_tournament),"ADD TEAMS TO TOURNAMENT",R.drawable.ic_action_communication_email));
         optionList.add(new OptionsMenu(getString(R.string.text_contact),"CONTACT",R.drawable.ic_action_communication_email));
     }
