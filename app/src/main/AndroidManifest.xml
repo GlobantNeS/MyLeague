@@ -3,7 +3,6 @@
     package="com.globant.myleague" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -26,11 +25,10 @@
         <activity
             android:name=".MatchResultActivity"
             android:label="@string/title_activity_match_result" >
-
         </activity>
         <activity
             android:name=".PrincipalNewsActivity"
-            android:label="@string/label_news">
+            android:label="@string/label_news" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,7 +39,7 @@
             android:name=".SettingsPrincipalActivity"
             android:label="@string/title_principal_activity_settings"
             android:parentActivityName=".PrincipalNewsActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PrincipalNewsActivity" />
@@ -53,6 +51,10 @@
         <activity
             android:name=".CreateTournamentActivity"
             android:label="@string/title_activity_teams_list" >
+        </activity>
+        <activity
+            android:name=".NewsCurrentRegistrationsActivity"
+            android:label="@string/title_activity_news_current_registrations" >
         </activity>
     </application>
 

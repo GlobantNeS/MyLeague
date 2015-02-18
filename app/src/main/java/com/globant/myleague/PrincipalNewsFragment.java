@@ -1,7 +1,9 @@
 package com.globant.myleague;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
@@ -11,9 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.globant.myleague.adapter.MatchNewsAdapter;
+import com.globant.myleague.adapter.MatchStatisticsAdapter;
+import com.globant.myleague.adapter.NewsAdapter;
 import com.globant.myleague.pojo.Matches;
-import com.globant.myleague.services.MatchService;
+import com.globant.myleague.services.NewsService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +31,19 @@ import retrofit.client.Response;
 public class PrincipalNewsFragment extends ListFragment {
 
     private final static String LOG_TAG= PrincipalNewsFragment.class.getSimpleName();
+    public final static String KEY_NEWS_PREFERENCES="key_filter_news_preferences";
+    public final static String KEY_DEFAULT_PREFERENCES="default_preferences";
 
-    MatchService.ApiInterface mMatchServiceInterface;
-    ArrayAdapter<Matches> mAdapter;
+    NewsService.ApiInterface mMatchServiceInterface;
+    ArrayAdapter<Matches> mAdapterListMatches;
+    ArrayAdapter<Matches> mAdapterListNews;
     public PrincipalNewsFragment() {
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        MatchService matchService = new MatchService();
+        NewsService matchService = new NewsService();
         mMatchServiceInterface = matchService.generateServiceInterface();
     }
 
@@ -50,7 +56,23 @@ public class PrincipalNewsFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        prepareListview();
+
+        String preferences = getNewsSettings();
+        switch(preferences){
+            case "Show Matches":
+                prepareListviewMatches();
+                break;
+            case "Show news soccer teams":
+                prepareListviewNews();
+                break;
+            case "Show new tournaments":
+                prepareListviewNews();
+                break;
+            case "Show all news":
+                prepareListviewNews();
+                break;
+            default:  prepareListviewMatches();
+        }
 
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,23 +85,45 @@ public class PrincipalNewsFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-        getAllMatches();
+       String preferences = getNewsSettings();
+        switch(preferences){
+            case "Show Matches":
+                getNewsAboutMatches();
+                break;
+            case "Show news soccer teams":
+                getNewsAboutClubesOnly();
+                break;
+            case "Show new tournaments":
+                 getNewsAboutTournamentsOnly();
+                break;
+            case "Show all news":
+                getAllNews();
+                break;
+            default:  getAllNews();
+        }
+
     }
 
-    private void prepareListview(){
+    private void prepareListviewMatches(){
         List<Matches> listMatches = new ArrayList<>();
-        mAdapter = new MatchNewsAdapter(getActivity(),listMatches);
-        setListAdapter(mAdapter);
+         mAdapterListMatches = new MatchStatisticsAdapter(getActivity(),listMatches);
+         setListAdapter(mAdapterListMatches);
     }
 
-    private void getAllMatches(){
+    private void prepareListviewNews(){
+         List<Matches> listNews = new ArrayList<>();
+         mAdapterListNews  = new NewsAdapter(getActivity(),listNews);
+        setListAdapter(mAdapterListNews);
+    }
+
+    private void getNewsAboutMatches(){
         mMatchServiceInterface.getAllMatches(new Callback<List<Matches>>() {
             @Override
             public void success(List<Matches> listMatches, Response response) {
                 if(response.getStatus()==200){
-                    mAdapter.clear();
-                    mAdapter.addAll(listMatches);
-                    mAdapter.notifyDataSetChanged();
+                    mAdapterListMatches.clear();
+                    mAdapterListMatches.addAll(listMatches);
+                    mAdapterListMatches.notifyDataSetChanged();
                 }else{
                     Log.e(LOG_TAG, "Matches retrieval status problem: " + response.getReason());
 
@@ -91,6 +135,91 @@ public class PrincipalNewsFragment extends ListFragment {
                 Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
             }
         });
+    }
+    private void getAllNews(){
+        mMatchServiceInterface.getAllNews(new Callback<List<Matches>>() {
+            @Override
+            public void success(List<Matches> listNews, Response response) {
+                if (response.getStatus() == 200) {
+                    parseList(listNews);
+                    mAdapterListNews.clear();
+                    mAdapterListNews.addAll(listNews);
+                    mAdapterListNews.notifyDataSetChanged();
+                } else {
+                    Log.e(LOG_TAG, "Matches retrieval status problem: " + response.getReason());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
+            }
+        });
+    }
+
+    private void getNewsAboutTournamentsOnly(){
+        mMatchServiceInterface.getnewsAboutTournaments(new Callback<List<Matches>>() {
+            @Override
+            public void success(List<Matches> listNews, Response response) {
+                if (response.getStatus() == 200) {
+                    parseList(listNews);
+                    mAdapterListNews.clear();
+                    mAdapterListNews.addAll(listNews);
+                    mAdapterListNews.notifyDataSetChanged();
+                } else {
+                    Log.e(LOG_TAG, "Matches retrieval status problem: " + response.getReason());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
+            }
+        });
+    }
+
+    private void getNewsAboutClubesOnly(){
+        mMatchServiceInterface.getNewsAbaoutClubes(new Callback<List<Matches>>() {
+            @Override
+            public void success(List<Matches> listNews, Response response) {
+                if (response.getStatus() == 200) {
+                    parseList(listNews);
+                    mAdapterListNews.clear();
+                    mAdapterListNews.addAll(listNews);
+                    mAdapterListNews.notifyDataSetChanged();
+                } else {
+                    Log.e(LOG_TAG, "Matches retrieval status problem: " + response.getReason());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
+            }
+        });
+    }
+
+    public static void parseList(List<Matches>listNews){
+        Log.i(LOG_TAG,"===================List.size="+listNews.size()+"============================");
+        for(int i=0; i< listNews.size(); i++){
+            Log.i(LOG_TAG,"idnews :"+listNews.get(i).getIdNews());
+            if(listNews.get(i).getIdNews().equals("2")) {
+                Log.i(LOG_TAG,"Es Noticia de Partido :"+listNews.get(i).toString());
+            }
+            else if(listNews.get(i).getIdNews().equals("1")) {
+                Log.i(LOG_TAG,"Es Noticia de Gral :"+listNews.get(i).getTitleNews());
+            }
+            Log.i(LOG_TAG,"===================position="+i+"============================");
+        }
+    }
+
+    private String getNewsSettings() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        String idNewsOption =  sharedPreferences.getString(KEY_NEWS_PREFERENCES,KEY_DEFAULT_PREFERENCES) ;
+        getActivity().setTitle(""+idNewsOption);
+        Log.i(LOG_TAG,"^^^ Value settings=:"+sharedPreferences.getString(KEY_NEWS_PREFERENCES,"default") );
+        return idNewsOption;
     }
 
 }
