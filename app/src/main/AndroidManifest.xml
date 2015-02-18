@@ -51,7 +51,6 @@
             android:label="@string/title_activity_teams_list" >
         </activity>
         <activity android:name=".MatchesFillActivity"/>
-        <activity android:name=".AddMyTeamToTournamentActivity"/>
         <activity android:name=".SelectTournamentToMatchActivity"/>
         <activity android:name=".SelectTournamentToSignUpActivity">
         </activity>

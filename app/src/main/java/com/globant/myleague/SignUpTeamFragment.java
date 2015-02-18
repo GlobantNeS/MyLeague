@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class SignUpTeamFragment extends Fragment {
     MyLeagueService.ApiInterface mMyLeagueApiInterface;
 
     public static final int TAKE_PICTURE = 1;
+    final static String LOG_TAG = SignUpTeamFragment.class.getSimpleName();
 
     public SignUpTeamFragment() {
     }
@@ -75,7 +77,7 @@ public class SignUpTeamFragment extends Fragment {
                 team.setEmail(etEmail.getText().toString());
                 team.setPhone(etPhone.getText().toString());
                 team.setUrl("");
-                mMyLeagueApiInterface.setTeam(team,new Callback<Teams>() {
+                mMyLeagueApiInterface.setTeam(team, new Callback<Teams>() {
                     @Override
                     public void success(Teams teams, Response response) {
                         if (response.getStatus() == 201) {
@@ -89,11 +91,9 @@ public class SignUpTeamFragment extends Fragment {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        if(error!=null)
-                            Toast.makeText(getActivity(),error.getResponse().getBody().toString(),Toast.LENGTH_LONG).show();
+                        Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
                     }
                 });
-
             }
         });
     }

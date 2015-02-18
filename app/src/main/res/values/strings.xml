@@ -91,7 +91,7 @@
     <string name="text_sign_up_team">Sign Up Team</string>
     <string name="text_add_my_team_to_tournament">Add My Team to Tournament</string>
     <string name="text_view_teams">View Teams</string>
-    <string name="text_fill_statistics">FILL STATISTICS</string>
+    <string name="text_fill_statistics">Fill Statistics</string>
     <string name="text_sucessfull_add">Team Added Sucessfull</string>
     <string name="text_sucessfull_fill_match">Sucessfull Save of Match</string>
 </resources>
