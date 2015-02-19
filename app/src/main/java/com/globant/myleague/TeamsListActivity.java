@@ -5,8 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 
+import com.globant.myleague.services.MyLeagueService;
+
 
 public class TeamsListActivity extends ActionBarActivity {
+
+    private MyLeagueService.ApiInterface mMyLeagueApiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +34,4 @@ public class TeamsListActivity extends ActionBarActivity {
             }
         }
     }
-
 }

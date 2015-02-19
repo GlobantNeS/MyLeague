@@ -5,12 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.util.SparseBooleanArray;
+import android.view.ActionMode;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.ListView;
 
 import com.globant.myleague.adapter.TeamsSelectionAdapter;
 import com.globant.myleague.pojo.Teams;
+import com.globant.myleague.pojo.TeamsInTournaments;
 import com.globant.myleague.services.MyLeagueService;
 
 import java.util.ArrayList;
@@ -26,6 +32,12 @@ public class CheckingTeamsListFragment extends ListFragment {
     private TeamsSelectionAdapter mAdapter;
     private MyLeagueService.ApiInterface mApiInterface;
     public List<Teams> mTeams;
+    public Button buttonAddTemsTooutnament;
+
+    AbsListView.MultiChoiceModeListener mMultiChoiceModeListener;;
+
+    public ActionMode mActionMode;
+
 
     public CheckingTeamsListFragment() {
     }
@@ -36,15 +48,41 @@ public class CheckingTeamsListFragment extends ListFragment {
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_check_list_teams, container, false);
+        buttonAddTemsTooutnament = (Button) rootView.findViewById(R.id.button_save_teams_tournament);
+        buttonAddTemsTooutnament.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List <Teams>teams = getCheckedItems();
+                Log.d(LOG_TAG, "Al menos este: " + teams.size());
+            }
+        });
+        return rootView;
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        String tournamentId= "";
-        if(getArguments() != null ) {
-            tournamentId =  getArguments().getString(TournamentsListFragment.TOURNAMENT_ID);
-        }
+
         teamsRequest();
+    }
 
+    public List<Teams> getCheckedItems(){
+        SparseBooleanArray checked = getListView().getCheckedItemPositions();
+        Teams team;
 
+        List<Teams> teams = mAdapter.mTeams;
+        List<Teams> teamsToReturn = new ArrayList<>();
+        for(int i=0;i<teams.size();i++){
+            team  = teams.get(i);
+            if(team.isSelected()){
+                teamsToReturn.add(team);
+            }
+        }
+
+        return teamsToReturn;
     }
 
     private void teamsRequest() {
@@ -80,14 +118,42 @@ public class CheckingTeamsListFragment extends ListFragment {
 
     private void prepareListWithAnAdapter(List<Teams> teams) {
 
-        mAdapter = new TeamsSelectionAdapter(getActivity(), R.layout.fragment_item_view_teams, teams );
+        mAdapter = new TeamsSelectionAdapter(getActivity(), R.layout.fragment_cheked_teams_entry, teams );
         setListAdapter(mAdapter);
-        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+
+        getListView().setMultiChoiceModeListener(mMultiChoiceModeListener);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    public void obtainTeamsInTournamentByIdRequest() {
+        MyLeagueService myLeagueService = new MyLeagueService();
+
+        mApiInterface = myLeagueService.generateServiceInterface();
+        String id = getArguments().getString(TournamentsListFragment.TOURNAMENT_ID);
+        mApiInterface.getTeamsInTournament(id, new Callback<List<TeamsInTournaments>>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Teams teams = (Teams) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(), "Name: " + teams.getName(), Toast.LENGTH_SHORT).show();
+            public void success(List<TeamsInTournaments> teamsInTournamentses, Response response) {
+                for (TeamsInTournaments t : teamsInTournamentses) {
+
+                }
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
             }
         });
     }
+
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Log.d(LOG_TAG, "Que hace esto:" + v.getTag());
+
+    }
+
+
 }

@@ -96,6 +96,14 @@ public class Teams implements Parcelable {
         this.url = url;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
     @Override
     public int describeContents() {
         return 0;
