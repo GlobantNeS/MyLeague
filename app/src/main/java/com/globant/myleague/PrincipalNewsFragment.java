@@ -1,6 +1,7 @@
 package com.globant.myleague;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -73,6 +74,7 @@ public class PrincipalNewsFragment extends ListFragment {
                 prepareListviewNews();
                 break;
             default:  prepareListviewMatches();
+                      prepareListviewNews();
         }
 
 
@@ -90,13 +92,20 @@ public class PrincipalNewsFragment extends ListFragment {
             News news = mAdapterListNews.getItem(position);
             if(news.getIdNews().equals("2")){
                 Log.w(LOG_TAG, "Click en Partido");
+                startMatchResultActivity();
             }else if(news.getIdNews().equals("1")){
                 Log.w(LOG_TAG, "Click en News");
             }
         }
         if(getListView().getAdapter() instanceof MatchStatisticsAdapter){
             Log.w(LOG_TAG, "Click en Partido" );
+            startMatchResultActivity();
         }
+    }
+
+    private void startMatchResultActivity() {
+        Intent intent = new Intent(getActivity(), MatchResultActivity.class);
+        startActivity(intent);
     }
 
     @Override
