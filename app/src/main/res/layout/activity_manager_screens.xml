@@ -17,7 +17,7 @@
 
     <!-- Left side pane. (Master) -->
     <fragment android:id="@+id/leftpane"
-        android:name="com.globant.myleague.menuFragment"
+        android:name="com.globant.myleague.MenuFragment"
         android:layout_width="190dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"  />

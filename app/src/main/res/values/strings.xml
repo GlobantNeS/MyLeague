@@ -98,5 +98,11 @@
     <string name="text_fill_statistics">Fill Statistics</string>
     <string name="text_sucessfull_add">Team Added Sucessfull</string>
     <string name="text_sucessfull_fill_match">Sucessfull Save of Match</string>
+    <string name="button_add_team_tournament">Add team(s) to the tournament</string>
+    <string name="text_view_synck_teams">Please, sync teams to show</string>
+    <string name="menu_sync_teams">Synck Teams</string>
+    <string name="action_add_team">Add team</string>
+    <string name="toast_no_teams_found">Add some teams</string>
+
 
 </resources>
