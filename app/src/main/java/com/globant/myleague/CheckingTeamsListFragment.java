@@ -1,11 +1,11 @@
 package com.globant.myleague;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,13 +39,9 @@ public class CheckingTeamsListFragment extends ListFragment {
     public List<Teams> mTeams;
     public Button buttonAddTeamsTournament;
     public static List<TeamsInTournaments> mTeamsInTournaments;
-    public Set<String> teamIds;
     public Set<String> tournamentIds;
 
     AbsListView.MultiChoiceModeListener mMultiChoiceModeListener;;
-
-    public ActionMode mActionMode;
-
 
     public CheckingTeamsListFragment() {
     }
@@ -60,6 +56,11 @@ public class CheckingTeamsListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_check_list_teams, container, false);
+        prepareViews(rootView);
+        return rootView;
+    }
+
+    private void prepareViews(View rootView) {
         buttonAddTeamsTournament = (Button) rootView.findViewById(R.id.button_save_teams_tournament);
         buttonAddTeamsTournament.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +68,14 @@ public class CheckingTeamsListFragment extends ListFragment {
                 List<Teams> teams = getCheckedItems();
                 if (teams.size() > 0) {
                     Log.d(LOG_TAG, "Al menos este: " + teams.size());
+                    Intent intent = new Intent();
+//                    intent.putExtra("teamsToAdd", teams);
+//                    getActivity().setResult();
                 } else
                     Toast.makeText(getActivity(), "Select at least one team", Toast.LENGTH_SHORT).show();
             }
         });
         buttonAddTeamsTournament.setEnabled(false);
-        return rootView;
     }
 
     @Override
@@ -185,7 +188,8 @@ public class CheckingTeamsListFragment extends ListFragment {
         switch (item.getItemId()) {
             case R.id.menu_sync_teams:
                 teamsRequest();
-                buttonAddTeamsTournament.setEnabled(true);
+                if(mTeams.size() > 0)
+                    buttonAddTeamsTournament.setEnabled(true);
                 handle = true;
             break;
         }
