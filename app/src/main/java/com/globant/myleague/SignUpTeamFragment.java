@@ -1,5 +1,7 @@
 package com.globant.myleague;
 
+
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,21 +17,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.services.MyLeagueService;
-import com.globant.myleague.tools.Tools;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class SignUpTeamFragment extends Fragment {
 
+    private static final String TEAM_KEY = "team";
+    private static final String LOG_TAG = SignUpTeamFragment.class.getSimpleName();
     EditText etName;
     EditText etManager;
     EditText etEmail;
@@ -39,11 +38,11 @@ public class SignUpTeamFragment extends Fragment {
     ImageView ivPictureTeam;
     Bitmap bMap;
     View view;
+    public static Teams mTeam;
 
     MyLeagueService.ApiInterface mMyLeagueApiInterface;
 
     public static final int TAKE_PICTURE = 1;
-    final static String LOG_TAG = SignUpTeamFragment.class.getSimpleName();
 
     public SignUpTeamFragment() {
     }
@@ -69,33 +68,50 @@ public class SignUpTeamFragment extends Fragment {
         btSaveTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyLeagueService myleagueService= new MyLeagueService();
+                MyLeagueService myleagueService = new MyLeagueService();
                 mMyLeagueApiInterface = myleagueService.generateServiceInterface();
-                Teams team=new Teams();
-                team.setName(etName.getText().toString());
-                team.setManager(etManager.getText().toString());
-                team.setEmail(etEmail.getText().toString());
-                team.setPhone(etPhone.getText().toString());
-                team.setUrl("");
-                mMyLeagueApiInterface.setTeam(team, new Callback<Teams>() {
-                    @Override
-                    public void success(Teams teams, Response response) {
-                        if (response.getStatus() == 201) {
-                            Tools tools=new Tools();
-                            tools.setIdUser(getActivity(),teams.getId());
-                            Toast.makeText(getActivity(),response.getBody().toString(),Toast.LENGTH_LONG).show();
-                            PrincipalNewsFragment fragment=new PrincipalNewsFragment();
-                            tools.loadFragment(getFragmentManager(),fragment, R.id.rightpane,"NEWS");
-                        }
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
-                    }
-                });
+                Teams team = settingTeamToSave();
+                savingTeamRequest(team);
             }
         });
+    }
+
+    private void savingTeamRequest(Teams team) {
+        mMyLeagueApiInterface.setTeam(team, new Callback<Teams>() {
+            @Override
+            public void success(Teams team, Response response) {
+                if (response.getStatus() == 201) {
+                    mTeam = team;
+                    Log.d(LOG_TAG, "Good Request");
+                    setResultActivity();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                if (error != null)
+                    Log.e(LOG_TAG, "Fail Request: " + error.getUrl() + "  - - " + error.getMessage());
+            }
+        });
+    }
+
+    private Teams settingTeamToSave() {
+        Teams team = new Teams();
+        team.setName(etName.getText().toString());
+        team.setManager(etManager.getText().toString());
+        team.setEmail(etEmail.getText().toString());
+        team.setPhone(etPhone.getText().toString());
+        team.setUrl("");
+        return team;
+    }
+
+    public void setResultActivity() {
+        Activity activity = getActivity();
+        Log.d(LOG_TAG, mTeam.getUrl());
+        Intent intent = new Intent();
+        intent.putExtra(TEAM_KEY, mTeam);
+        activity.setResult(Activity.RESULT_OK, intent);
+        activity.finish();
     }
 
     public void prepareText() {

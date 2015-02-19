@@ -32,6 +32,7 @@ public class MyLeagueService {
     final static String TOURNAMENTS_ENDPOINT = "/tournaments";
     final static String TEAMS_ENDPOINT = "/teams";
     final static String TEAM_ENDPOINT = "/teams/{id}";
+    final static String TEAM_CREATE_ENDPOINT = "/team";
     final static String TOURNAMENTS_ID_ENDPOINT = "/tournaments/{id}";
     final static String MATCHES_ENDPOINT = "/matches";
     final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}";
