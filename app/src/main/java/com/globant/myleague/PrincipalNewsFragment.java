@@ -74,7 +74,11 @@ public class PrincipalNewsFragment extends ListFragment {
                 prepareListviewNews();
                 break;
             default:  prepareListviewMatches();
+<<<<<<< HEAD
                       prepareListviewNews();
+=======
+                prepareListviewNews();
+>>>>>>> a7f0d18280ebe858a1bdf011af7923166b2e8e70
         }
 
 
@@ -111,7 +115,7 @@ public class PrincipalNewsFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-       String preferences = getNewsSettings();
+        String preferences = getNewsSettings();
         switch(preferences){
             case "Show Matches":
                 getNewsAboutMatches();
@@ -120,7 +124,7 @@ public class PrincipalNewsFragment extends ListFragment {
                 getNewsAboutClubesOnly();
                 break;
             case "Show new tournaments":
-                 getNewsAboutTournamentsOnly();
+                getNewsAboutTournamentsOnly();
                 break;
             case "Show all news":
                 getAllNews();
@@ -132,13 +136,13 @@ public class PrincipalNewsFragment extends ListFragment {
 
     private void prepareListviewMatches(){
         List<Matches> listMatches = new ArrayList<>();
-         mAdapterListMatches = new MatchStatisticsAdapter(getActivity(),listMatches);
-         setListAdapter(mAdapterListMatches);
+        mAdapterListMatches = new MatchStatisticsAdapter(getActivity(),listMatches);
+        setListAdapter(mAdapterListMatches);
     }
 
     private void prepareListviewNews(){
-         List<Matches> listNews = new ArrayList<>();
-         mAdapterListNews  = new NewsAdapter(getActivity(),listNews);
+        List<Matches> listNews = new ArrayList<>();
+        mAdapterListNews  = new NewsAdapter(getActivity(),listNews);
         setListAdapter(mAdapterListNews);
     }
 
