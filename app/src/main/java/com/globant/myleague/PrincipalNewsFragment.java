@@ -74,11 +74,8 @@ public class PrincipalNewsFragment extends ListFragment {
                 prepareListviewNews();
                 break;
             default:  prepareListviewMatches();
-<<<<<<< HEAD
                       prepareListviewNews();
-=======
-                prepareListviewNews();
->>>>>>> a7f0d18280ebe858a1bdf011af7923166b2e8e70
+
         }
 
 
