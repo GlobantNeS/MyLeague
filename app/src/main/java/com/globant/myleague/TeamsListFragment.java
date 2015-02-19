@@ -53,13 +53,7 @@ public class TeamsListFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-//        if (getArguments() != null) {
-//            mShowAllTeams = false;
-//        } else {
-//            mShowAllTeams = true;
             teamsRequest();
-//         }
-
     }
 
     private void teamsRequest() {

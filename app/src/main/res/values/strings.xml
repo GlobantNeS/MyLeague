@@ -73,5 +73,6 @@
     <string name="text_local_exp">Local Exp</string>
     <string name="text_visit_exp">Visit Exp</string>
     <string name="button_add_team_tournament">Add team(s) to the tournament</string>
+    <string name="menu_sync_teams">Sync teams</string>
 
 </resources>
