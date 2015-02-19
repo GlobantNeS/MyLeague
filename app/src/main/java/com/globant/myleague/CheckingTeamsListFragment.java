@@ -1,7 +1,6 @@
 package com.globant.myleague;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -49,7 +48,7 @@ public class CheckingTeamsListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -67,10 +66,10 @@ public class CheckingTeamsListFragment extends ListFragment {
             public void onClick(View v) {
                 List<Teams> teams = getCheckedItems();
                 if (teams.size() > 0) {
-                    Log.d(LOG_TAG, "Al menos este: " + teams.size());
-                    Intent intent = new Intent();
-//                    intent.putExtra("teamsToAdd", teams);
-//                    getActivity().setResult();
+                    MyLeagueService myLeagueService = new MyLeagueService();
+                    mApiInterface = myLeagueService.generateServiceInterface();
+                    Toast.makeText(getActivity(), "Teams added", Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
                 } else
                     Toast.makeText(getActivity(), "Select at least one team", Toast.LENGTH_SHORT).show();
             }
@@ -81,11 +80,12 @@ public class CheckingTeamsListFragment extends ListFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        obtainTeamsInTournamentByIdRequest();
+        teamsRequest();
     }
 
     private void removeTeamsInTournament(List<Teams> responseTeams) {
         preparingTeamIdsInTournament();
+        Log.d(LOG_TAG, "Teams size: " + responseTeams.size());
         for(int index = 0 ; index < responseTeams.size(); index++) {
             if(!tournamentIds.contains(responseTeams.get(index).getId())){
                 mTeams.add(responseTeams.get(index));
@@ -109,8 +109,7 @@ public class CheckingTeamsListFragment extends ListFragment {
             @Override
             public void success(List<Teams> teamsResponse, Response response) {
                 if(response.getStatus() == 200) {
-                    removeTeamsInTournament(teamsResponse);
-                    prepareListWithAnAdapter(mTeams);
+                    obtainTeamsInTournamentByIdRequest(teamsResponse);
                 } else Log.d(LOG_TAG, "Bad request");
             }
 
@@ -123,6 +122,8 @@ public class CheckingTeamsListFragment extends ListFragment {
 
 
     private void prepareListWithAnAdapter(List<Teams> teams) {
+        if(teams.size() > 0)
+            buttonAddTeamsTournament.setEnabled(true);
         mAdapter = new TeamsSelectionAdapter(getActivity(), R.layout.fragment_cheked_teams_entry, teams );
         setListAdapter(mAdapter);
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -144,7 +145,7 @@ public class CheckingTeamsListFragment extends ListFragment {
         return teamsToReturn;
     }
 
-    public void obtainTeamsInTournamentByIdRequest() {
+    public void obtainTeamsInTournamentByIdRequest(final List<Teams> teamsResponse) {
         MyLeagueService myLeagueService = new MyLeagueService();
         mApiInterface = myLeagueService.generateServiceInterface();
         String id = getArguments().getString(TournamentsListFragment.TOURNAMENT_ID);
@@ -156,6 +157,8 @@ public class CheckingTeamsListFragment extends ListFragment {
                     if (teamsInTournaments != null) {
                         Log.d(LOG_TAG, "teams in: " + teamsInTournaments.size());
                         mTeamsInTournaments = teamsInTournaments;
+                        removeTeamsInTournament(teamsResponse);
+                        prepareListWithAnAdapter(mTeams);
                     } else  Log.d(LOG_TAG, "Empty ids");
                 } else Log.d(LOG_TAG, "Bad Request");
             }
@@ -167,17 +170,9 @@ public class CheckingTeamsListFragment extends ListFragment {
         });
     }
 
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Log.d(LOG_TAG, "Que hace esto:" + v.getTag());
-
-    }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu__sync_check_teams, menu);
+        inflater.inflate(R.menu.menu_sync_check_teams, menu);
 
     }
 
