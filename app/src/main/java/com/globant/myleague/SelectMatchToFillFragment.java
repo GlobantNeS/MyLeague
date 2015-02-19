@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import com.globant.myleague.adapter.LinkAdapterMatch;
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,12 @@ public class SelectMatchToFillFragment extends ListFragment {
 
     final static String LOG_TAG = SelectTournamentToMatchFragment.class.getSimpleName();
     final static String TOURNAMENT_ID = "TOURNAMENT_ID";
+    final static String LOCAL_ID = "LOCAL_ID";
+    final static String VISIT_ID = "VISIT_ID";
+    final static String LOCAL_NAME = "LOCAL_NAME";
+    final static String VISIT_NAME = "VISIT_NAME";
+
+    Tools tools = new Tools();
 
     public SelectMatchToFillFragment()
     {
@@ -51,11 +58,30 @@ public class SelectMatchToFillFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Matches selectedMatch = (Matches)mAdapter.getItem(position);
+                Matches selectedMatch = mAdapter.getItem(position);
                 String selectedTournamentId = selectedMatch.getId();
-                //Intent intent = new Intent(getActivity(), MatchesListActivity.class);
-                //intent.putExtra(MatchesListActivity.TOURNAMENT_ID, selectedTournamentId);
-                //startActivity(intent);
+                String IdLocal = selectedMatch.getIdLocal();
+                String IdVisit = selectedMatch.getIdVisit();
+                String nameLocal = selectedMatch.getNameLocal();
+                String nameVisit = selectedMatch.getNameVisit();
+
+                Bundle bundle = new Bundle();
+                bundle.putString(TOURNAMENT_ID, selectedTournamentId);
+                bundle.putString(LOCAL_ID, IdLocal);
+                bundle.putString(VISIT_ID, IdVisit);
+                bundle.putString(LOCAL_NAME, nameLocal);
+                bundle.putString(VISIT_NAME, nameVisit);
+                MatchFillFragment matchFillFragment = new MatchFillFragment();
+                matchFillFragment.setArguments(bundle);
+                tools.loadFragment(getFragmentManager(),matchFillFragment,R.id.rightpane,"YES");
+
+                /*Intent intent = new Intent(getActivity(), MatchesFillActivity.class);
+                intent.putExtra(TOURNAMENT_ID, selectedTournamentId);
+                intent.putExtra(LOCAL_ID, IdLocal);
+                intent.putExtra(VISIT_ID, IdVisit);
+                intent.putExtra(LOCAL_NAME, nameLocal);
+                intent.putExtra(VISIT_NAME, nameVisit);
+                startActivity(intent);*/
             }
         });
     }
