@@ -39,6 +39,7 @@ public class SignUpTeamFragment extends Fragment {
     ImageView ivPictureTeam;
     Bitmap bMap;
     View view;
+    private static final String BACK ="BACK";
 
     MyLeagueService.ApiInterface mMyLeagueApiInterface;
 
@@ -85,8 +86,10 @@ public class SignUpTeamFragment extends Fragment {
                             Tools tools=new Tools();
                             tools.setIdUser(getActivity(),teams.getId());
                             Toast.makeText(getActivity(),"Added Team Ok",Toast.LENGTH_LONG).show();
-                            PrincipalNewsFragment fragment=new PrincipalNewsFragment();
-                            tools.loadFragment(getFragmentManager(),fragment, R.id.rightpane,"NEWS");
+                            if(getArguments().size()!=0)
+                                tools.loadFragment(getFragmentManager(),new TeamsListFragment(), R.id.rightpane,"NEWS");
+                            else
+                                tools.loadFragment(getFragmentManager(),new PrincipalNewsFragment(), R.id.rightpane,"TEAMS");
                         }
                     }
 

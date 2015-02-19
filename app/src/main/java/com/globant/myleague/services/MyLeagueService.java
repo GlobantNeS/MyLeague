@@ -29,6 +29,9 @@ public class MyLeagueService {
     final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}.json";
     final static String TEAMS_TOURNAMENT_ID_ENDPOINT = "/teamsintournaments/{id}.json";
     final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournaments.json";
+    final static String NEWS_CURRENTLY_CLUBS_REGISTERED = "/clubs.json";
+    final static String NEWS_TOURNAMENTS = "/news_tournaments.json";
+    final static String ALL_NEWS_ENDPOINT = "/news.json";
 
     /*final static String API_URL = "http://private-a479a-myleague.apiary-mock.com";
     final static String TOURNAMENTS_ENDPOINT = "/tournaments";
@@ -39,7 +42,11 @@ public class MyLeagueService {
     final static String MATCHES_ENDPOINT = "/matches";
     final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}";
     final static String TEAMS_TOURNAMENT_ID_ENDPOINT = "/teamsintournament/{id}";
-    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournament";*/
+    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournament";
+    final static String ALL_MATCHES_ENDPOINT = "/matches";
+    final static String NEWS_CURRENTLY_CLUBES_REGISTERED = "/news/clubs";
+    final static String NEWS_TOURNAMENTS = "/news/tournaments";
+    final static String ALL_NEWS_ENDPOINT = "/news";*/
 
     public interface ApiInterface {
 
@@ -81,6 +88,15 @@ public class MyLeagueService {
 
         @GET(TEAMS_TOURNAMENT_ID_ENDPOINT)
         void getTeamsInTournament(@Path("id") String id,Callback<List<TeamsInTournaments>> callback);
+
+        @GET(ALL_NEWS_ENDPOINT)
+        void getAllNews(Callback<List<Matches>> callback);
+
+        @GET(NEWS_CURRENTLY_CLUBS_REGISTERED)
+        void getNewsAboutClubs(Callback<List<Matches>> callback);
+
+        @GET(NEWS_TOURNAMENTS)
+        void getNewsAboutTournaments(Callback<List<Matches>> callback);
     }
 
     public MyLeagueService() {

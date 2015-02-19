@@ -43,7 +43,7 @@ public class Teams implements Parcelable {
         manager = team.readString();
         email = team.readString();
         phone = team.readString();
-        url = team.readString();
+        urlimage = team.readString();
     }
 
 
@@ -117,6 +117,6 @@ public class Teams implements Parcelable {
         dest.writeString(manager);
         dest.writeString(email);
         dest.writeString(phone);
-        dest.writeString(url);
+        dest.writeString(urlimage);
     }
 }

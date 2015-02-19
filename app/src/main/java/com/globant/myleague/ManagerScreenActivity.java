@@ -204,7 +204,6 @@ public class ManagerScreenActivity extends ActionBarActivity implements MenuFrag
                 checkConnection(new SelectTournamentToMatchFragment(),FILL_STATISTICS);
                 break;
             case VIEW_TEAMS:
-                //TODO
                 checkConnection(new TeamsListFragment(),VIEW_TEAMS);
                 break;
             case CONTACT:

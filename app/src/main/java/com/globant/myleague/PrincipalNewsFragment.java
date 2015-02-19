@@ -18,7 +18,7 @@ import com.globant.myleague.adapter.MatchStatisticsAdapter;
 import com.globant.myleague.adapter.NewsAdapter;
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.pojo.News;
-import com.globant.myleague.services.NewsService;
+import com.globant.myleague.services.MyLeagueService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class PrincipalNewsFragment extends ListFragment {
     public final static String KEY_NEWS_PREFERENCES="key_filter_news_preferences";
     public final static String KEY_DEFAULT_PREFERENCES="default_preferences";
 
-    NewsService.ApiInterface mMatchServiceInterface;
+    MyLeagueService.ApiInterface mMatchServiceInterface;
     ArrayAdapter<Matches> mAdapterListMatches;
     ArrayAdapter<Matches> mAdapterListNews;
     public PrincipalNewsFragment() {
@@ -45,7 +45,7 @@ public class PrincipalNewsFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        NewsService matchService = new NewsService();
+        MyLeagueService matchService = new MyLeagueService();
         mMatchServiceInterface = matchService.generateServiceInterface();
     }
 
@@ -143,7 +143,7 @@ public class PrincipalNewsFragment extends ListFragment {
     }
 
     private void getNewsAboutMatches(){
-        mMatchServiceInterface.getAllMatches(new Callback<List<Matches>>() {
+        mMatchServiceInterface.getMatches(new Callback<List<Matches>>() {
             @Override
             public void success(List<Matches> listMatches, Response response) {
                 if(response.getStatus()==200){
@@ -184,7 +184,7 @@ public class PrincipalNewsFragment extends ListFragment {
     }
 
     private void getNewsAboutTournamentsOnly(){
-        mMatchServiceInterface.getnewsAboutTournaments(new Callback<List<Matches>>() {
+        mMatchServiceInterface.getNewsAboutTournaments(new Callback<List<Matches>>() {
             @Override
             public void success(List<Matches> listNews, Response response) {
                 if (response.getStatus() == 200) {
@@ -205,7 +205,7 @@ public class PrincipalNewsFragment extends ListFragment {
     }
 
     private void getNewsAboutClubesOnly(){
-        mMatchServiceInterface.getNewsAbaoutClubes(new Callback<List<Matches>>() {
+        mMatchServiceInterface.getNewsAboutClubs(new Callback<List<Matches>>() {
             @Override
             public void success(List<Matches> listNews, Response response) {
                 if (response.getStatus() == 200) {
