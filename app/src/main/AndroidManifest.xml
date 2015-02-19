@@ -15,11 +15,6 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".SignUpTeamActivity"
-            android:label="@string/title_activity_create_tournament" >
-
-        </activity>
-        <activity
             android:name=".AddTeamActivity"
             android:label="@string/title_activity_add_team" >
         </activity>
@@ -48,10 +43,6 @@
         <activity
             android:name=".MatchesListActivity"
             android:label="@string/title_activity_match_list" >
-        </activity>
-        <activity
-            android:name=".CreateTournamentActivity"
-            android:label="@string/title_activity_teams_list" >
         </activity>
 
         <activity android:name=".MatchesFillActivity"/>

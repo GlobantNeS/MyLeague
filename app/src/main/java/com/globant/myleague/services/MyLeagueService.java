@@ -20,15 +20,17 @@ import retrofit.http.Path;
 
 public class MyLeagueService {
 
-    /*final static String API_URL = "http://localhost:3000";
+    final static String API_URL = "http://10.0.2.2:3000";
     final static String TOURNAMENTS_ENDPOINT = "/tournaments.json";
     final static String TEAMS_ENDPOINT = "/teams.json";
     final static String TEAM_ENDPOINT = "/teams/{id}.json";
     final static String TOURNAMENTS_ID_ENDPOINT = "/tournaments/{id}.json";
     final static String MATCHES_ENDPOINT = "/matches.json";
-    final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}.json";*/
+    final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}.json";
+    final static String TEAMS_TOURNAMENT_ID_ENDPOINT = "/teamsintournaments/{id}.json";
+    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournaments.json";
 
-    final static String API_URL = "http://private-a479a-myleague.apiary-mock.com";
+    /*final static String API_URL = "http://private-a479a-myleague.apiary-mock.com";
     final static String TOURNAMENTS_ENDPOINT = "/tournaments";
     final static String TEAMS_ENDPOINT = "/teams";
     final static String TEAM_ENDPOINT = "/teams/{id}";
@@ -36,7 +38,7 @@ public class MyLeagueService {
     final static String MATCHES_ENDPOINT = "/matches";
     final static String MATCHES_TOURNAMENT_ENDPOINT = "/matches/{id}";
     final static String TEAMS_TOURNAMENT_ID_ENDPOINT = "/teamsintournament/{id}";
-    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournament";
+    final static String TEAMS_TOURNAMENT_ENDPOINT = "/teamsintournament";*/
 
     public interface ApiInterface {
 
@@ -72,6 +74,9 @@ public class MyLeagueService {
 
         @POST(TEAMS_TOURNAMENT_ENDPOINT)
         void addTeamToTournament(@Body TeamsInTournaments teamsInTournaments,Callback<TeamsInTournaments> callback);
+
+        @GET(TEAMS_TOURNAMENT_ENDPOINT)
+        void getAllTeamsInTournaments(Callback<List<TeamsInTournaments>> callback);
 
         @GET(TEAMS_TOURNAMENT_ID_ENDPOINT)
         void getTeamsInTournament(@Path("id") String id,Callback<List<TeamsInTournaments>> callback);

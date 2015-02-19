@@ -44,10 +44,10 @@ public class TeamsAdapter extends ArrayAdapter<Teams> {
             TextView editTextName = (TextView) rowView.findViewById(R.id.text_view_team_name);
             NetworkImageView imageView = (NetworkImageView) rowView.findViewById(R.id.network_image_view_team);
 
-            Log.d(LOG_TAG, "URL view: " + mTeams.get(position).getUrl());
+            Log.d(LOG_TAG, "URL view: " + mTeams.get(position).getUrlimage());
 
             editTextName.setText(mTeams.get(position).getName());
-            Tools.loadImageFromInternet(mContext, imageView, mTeams.get(position).getUrl());
+            Tools.loadImageFromInternet(mContext, imageView, mTeams.get(position).getUrlimage());
 
 
         }

@@ -92,7 +92,7 @@ public class LinkAdapterMatch extends ArrayAdapter<Matches>{
             public void success(Teams teams, Response response) {
                 if(teams!=null) {
                     tvVisitName.setText(teams.getName());
-                    String url = teams.getUrl();
+                    String url = teams.getUrlimage();
                     Tools.loadImageFromInternet(ctx, nivVisitant, url);
                 }
             }
@@ -111,7 +111,7 @@ public class LinkAdapterMatch extends ArrayAdapter<Matches>{
             public void success(Teams teams, Response response) {
                 if(teams!=null) {
                     tvLocalName.setText(teams.getName());
-                    String url = teams.getUrl();
+                    String url = teams.getUrlimage();
                     Tools.loadImageFromInternet(ctx, nivLocal, url);
                 }
             }

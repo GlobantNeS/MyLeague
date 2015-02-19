@@ -15,8 +15,8 @@ public class Tournaments {
     private String period;
     @SerializedName("prices")
     private String prices;
-    @SerializedName("url")
-    private String url;
+    @SerializedName("url_image")
+    private String url_image;
 
     public String getId() {
         return id;
@@ -66,16 +66,17 @@ public class Tournaments {
         this.prices = prices;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String toString()
     {
         return name+"\n\t\t"+dateini;
+    }
+
+    public String getUrl_image() {
+        return url_image;
+    }
+
+    public void setUrl_image(String url_image) {
+        this.url_image = url_image;
     }
 }

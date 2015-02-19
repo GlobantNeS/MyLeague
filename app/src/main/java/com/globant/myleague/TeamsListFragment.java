@@ -79,7 +79,7 @@ public class TeamsListFragment extends ListFragment {
         for(int i = 0; i < teamsResponse.size(); i++){
             team =new Teams();
             team.setName(teamsResponse.get(i).getName());
-            team.setUrl(teamsResponse.get(i).getUrl());
+            team.setUrlimage(teamsResponse.get(i).getUrlimage());
             mTeams.add(team);
         }
     }

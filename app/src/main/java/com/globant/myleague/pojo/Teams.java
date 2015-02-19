@@ -13,8 +13,8 @@ public class Teams {
     private String email;
     @SerializedName("phone")
     private String phone;
-    @SerializedName("url")
-    private String url;
+    @SerializedName("url_image")
+    private String urlimage;
 
     public String getId() {
         return id;
@@ -56,11 +56,12 @@ public class Teams {
         this.phone = phone;
     }
 
-    public String getUrl() {
-        return url;
+
+    public String getUrlimage() {
+        return urlimage;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlimage(String urlimage) {
+        this.urlimage = urlimage;
     }
 }

@@ -65,7 +65,7 @@ public class LinkAdapterTeam extends ArrayAdapter<Teams>{
 
 
         String name= teamsList.get(position).getName();
-        String url = teamsList.get(position).getUrl();
+        String url = teamsList.get(position).getUrlimage();
 
 
         tvTeamName.setText(name);
