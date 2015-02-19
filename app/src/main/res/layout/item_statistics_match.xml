@@ -136,13 +136,13 @@
                 android:layout_gravity="left"
                 android:paddingRight="0dp"
                 android:gravity="center"
-                android:paddingLeft="30dp">
+                android:paddingLeft="20dp">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView"
-                    android:background="#ffff0c13" />
+                    android:background="@drawable/ic_red_card" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,10 +153,10 @@
                     android:paddingLeft="5dp" />
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView2"
-                    android:background="#ffffe919" />
+                    android:background="@drawable/ic_yellow_card" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -173,27 +173,27 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="0.43"
                 android:gravity="center"
-                android:paddingLeft="70dp">
+                android:paddingLeft="60dp">
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView3"
-                    android:background="#ffff0c13" />
+                    android:background="@drawable/ic_red_card" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:text="@string/text_view_red_cards_for_play"
                     android:id="@+id/text_view_red_cards_visit_ppal"
-                    android:layout_weight="0.01"
+                    android:layout_weight="0.018"
                     android:paddingLeft="5dp" />
 
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:id="@+id/imageView4"
-                    android:background="#ffffe919" />
+                    android:background="@drawable/ic_yellow_card" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -201,7 +201,7 @@
                     android:text="@string/text_view_yellow_cards_for_play"
                     android:id="@+id/text_view_yellow_cards_visit_ppal"
                     android:layout_weight="0.01"
-                    android:paddingLeft="5dp" />
+                    android:paddingLeft="2.5dp" />
             </LinearLayout>
 
 

@@ -12,10 +12,10 @@
         android:contentDescription="@string/text_desc_ico" />
 
     <TextView  android:id="@+id/optName"
-        android:textStyle="bold"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/abc_text_size_large_material" />
+        android:layout_height="45dp"
+        android:textSize="@dimen/abc_text_size_menu_material"
+        android:gravity="center_vertical" />
 
 
 </LinearLayout>

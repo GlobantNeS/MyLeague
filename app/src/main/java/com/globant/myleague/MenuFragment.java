@@ -66,36 +66,36 @@ public class MenuFragment extends Fragment {
     }
 
     private void init() {
+
         optionList.add(new OptionsMenu(getString(R.string.text_news),
-                ManagerScreenActivity.NEWS,R.drawable.ic_action_action_language));
+                ManagerScreenActivity.NEWS,R.drawable.ic_action_news));
 
         if(settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_create_tournament),
-                    ManagerScreenActivity.CREATE_TOURNAMENT,R.drawable.ic_action_social_person));
+                    ManagerScreenActivity.CREATE_TOURNAMENT,R.drawable.ic_create_league));
 
         if(settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_fill_statistics),
-                    ManagerScreenActivity.FILL_STATISTICS,R.drawable.ic_action_social_person));
+                    ManagerScreenActivity.FILL_STATISTICS,R.drawable.ic_fill_statict));
 
         if(settings.get("id").equals("-1") || settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_sign_up_team),
-                    ManagerScreenActivity.SIGN_UP_TEAM,R.drawable.ic_action_social_person));
+                    ManagerScreenActivity.SIGN_UP_TEAM,R.drawable.ic_add_team));
 
         if(settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_add_teams_to_tournament),
-                    ManagerScreenActivity.ADD_TEAMS_TO_TOURNAMENT,R.drawable.ic_action_communication_email));
+                    ManagerScreenActivity.ADD_TEAMS_TO_TOURNAMENT,R.drawable.ic_add_to_league));
 
         if(!settings.get("id").equals("0"))
             optionList.add(new OptionsMenu(getString(R.string.text_add_my_team_to_tournament),
-                    ManagerScreenActivity.ADD_MY_TEAM_TO_TOURNAMENT,R.drawable.ic_action_communication_email));
+                    ManagerScreenActivity.ADD_MY_TEAM_TO_TOURNAMENT,R.drawable.ic_add_to_league));
 
         optionList.add(new OptionsMenu(getString(R.string.text_view_teams),
-                ManagerScreenActivity.VIEW_TEAMS,R.drawable.ic_action_communication_email));
+                ManagerScreenActivity.VIEW_TEAMS,R.drawable.ic_teams));
 
         optionList.add(new OptionsMenu(getString(R.string.text_contact),
-                ManagerScreenActivity.CONTACT,R.drawable.ic_action_communication_email));
+                ManagerScreenActivity.CONTACT,R.drawable.ic_contact));
     }
-
     public interface OptionsMenuListener {
         public void OptionsMenuListener(String optionMenu);
     }

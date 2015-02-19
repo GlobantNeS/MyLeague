@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    android:background="@color/divider">
 
 
     <ListView  android:id="@+id/menuList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="15dp"
-        android:divider="@android:color/transparent"/>
+        android:divider="@color/divider"/>
 </LinearLayout>

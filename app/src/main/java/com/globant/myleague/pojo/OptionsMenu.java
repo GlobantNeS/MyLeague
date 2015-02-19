@@ -4,6 +4,7 @@ package com.globant.myleague.pojo;
  * Created the first version by kaineras on 3/02/15.
  */
 public class OptionsMenu {
+
     public String name;
     public String text;
     public int ico;
