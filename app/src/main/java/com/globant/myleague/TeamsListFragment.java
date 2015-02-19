@@ -106,6 +106,7 @@ public class TeamsListFragment extends ListFragment {
         HashMap<String,String> settings;
         Tools tools = new Tools();
         settings=tools.getPreferences(getActivity());
+        getActivity().setTitle("TEAMS");
         if(settings.get("id").equals("0"))
             inflater.inflate(R.menu.menu_teams_list, menu);
     }

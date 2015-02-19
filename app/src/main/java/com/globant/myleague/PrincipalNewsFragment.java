@@ -74,7 +74,8 @@ public class PrincipalNewsFragment extends ListFragment {
                 prepareListviewNews();
                 break;
             default:  prepareListviewMatches();
-                prepareListviewNews();
+                      prepareListviewNews();
+
         }
 
 
@@ -243,7 +244,7 @@ public class PrincipalNewsFragment extends ListFragment {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         String idNewsOption =  sharedPreferences.getString(KEY_NEWS_PREFERENCES,KEY_DEFAULT_PREFERENCES) ;
-        getActivity().setTitle(""+idNewsOption);
+        getActivity().setTitle(idNewsOption.equals("default_preferences")?"Show all News":idNewsOption);
         Log.i(LOG_TAG,"^^^ Value settings=:"+sharedPreferences.getString(KEY_NEWS_PREFERENCES,"default") );
         return idNewsOption;
     }
