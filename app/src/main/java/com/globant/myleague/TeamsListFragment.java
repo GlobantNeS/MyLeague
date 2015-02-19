@@ -106,7 +106,7 @@ public class TeamsListFragment extends ListFragment {
         HashMap<String,String> settings;
         Tools tools = new Tools();
         settings=tools.getPreferences(getActivity());
-        getActivity().setTitle("TEAMS");
+        getActivity().setTitle(getString(R.string.text_title_teams));
         if(settings.get("id").equals("0"))
             inflater.inflate(R.menu.menu_teams_list, menu);
     }
@@ -122,8 +122,6 @@ public class TeamsListFragment extends ListFragment {
                                         SignUpTeamFragment signUpTeamFragment = new SignUpTeamFragment();
                                         signUpTeamFragment.setArguments(bundle);
                                         tools.loadFragment(getFragmentManager(), signUpTeamFragment, R.id.rightpane,"NEWS");
-                                        //Intent intent = new Intent(getActivity(), CreateTeamActivity.class);
-                                        //startActivityForResult(intent, ADD_TEAM_REQUEST);
                                         handle = true;
 
             break;

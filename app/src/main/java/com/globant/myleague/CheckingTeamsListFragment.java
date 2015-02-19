@@ -20,6 +20,7 @@ import com.globant.myleague.adapter.TeamsSelectionAdapter;
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.pojo.TeamsInTournaments;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,9 @@ public class CheckingTeamsListFragment extends ListFragment {
     public Button buttonAddTeamsTournament;
     public static List<TeamsInTournaments> mTeamsInTournaments;
     public Set<String> tournamentIds;
+    Tools tools = new Tools();
 
-    AbsListView.MultiChoiceModeListener mMultiChoiceModeListener;;
+    AbsListView.MultiChoiceModeListener mMultiChoiceModeListener;
 
     public CheckingTeamsListFragment() {
     }
@@ -66,10 +68,14 @@ public class CheckingTeamsListFragment extends ListFragment {
             public void onClick(View v) {
                 List<Teams> teams = getCheckedItems();
                 if (teams.size() > 0) {
+                    String id = getArguments().getString(TournamentsListFragment.TOURNAMENT_ID);
                     MyLeagueService myLeagueService = new MyLeagueService();
                     mApiInterface = myLeagueService.generateServiceInterface();
-                    Toast.makeText(getActivity(), "Teams added", Toast.LENGTH_SHORT).show();
-                    getActivity().finish();
+                    for(Teams t:teams)
+                        addMyTeamToTournament(t.getId(),id);
+                    Toast.makeText(getActivity(), getString(R.string.text_sucessfull_add_teams), Toast.LENGTH_LONG).show();
+                    tools.loadFragment(getFragmentManager(),new PrincipalNewsFragment(), R.id.rightpane,"NEWS");
+
                 } else
                     Toast.makeText(getActivity(), "Select at least one team", Toast.LENGTH_SHORT).show();
             }
@@ -148,15 +154,21 @@ public class CheckingTeamsListFragment extends ListFragment {
     public void obtainTeamsInTournamentByIdRequest(final List<Teams> teamsResponse) {
         MyLeagueService myLeagueService = new MyLeagueService();
         mApiInterface = myLeagueService.generateServiceInterface();
-        String id = getArguments().getString(TournamentsListFragment.TOURNAMENT_ID);
-        mApiInterface.getTeamsInTournament(id, new Callback<List<TeamsInTournaments>>() {
+        final String id = getArguments().getString(TournamentsListFragment.TOURNAMENT_ID);
+        mApiInterface.getAllTeamsInTournaments(new Callback<List<TeamsInTournaments>>() {
             @Override
-            public void success(List<TeamsInTournaments> teamsInTournaments, Response response) {
+            public void success(List<TeamsInTournaments> teamsInTournamentses, Response response) {
+
                 if(response.getStatus() == 200) {
                     Log.d(LOG_TAG, "goodRequest");
-                    if (teamsInTournaments != null) {
-                        Log.d(LOG_TAG, "teams in: " + teamsInTournaments.size());
-                        mTeamsInTournaments = teamsInTournaments;
+                    if (teamsInTournamentses != null) {
+                        List<TeamsInTournaments> teamsTemp = new ArrayList<TeamsInTournaments>();
+                        for(TeamsInTournaments tit:teamsInTournamentses)
+                            if(tit.getIdTournament().equals(id))
+                                teamsTemp.add(tit);
+                        teamsInTournamentses = teamsTemp;
+                        Log.d(LOG_TAG, "teams in: " + teamsInTournamentses.size());
+                        mTeamsInTournaments = teamsTemp;
                         removeTeamsInTournament(teamsResponse);
                         prepareListWithAnAdapter(mTeams);
                     } else  Log.d(LOG_TAG, "Empty ids");
@@ -168,6 +180,7 @@ public class CheckingTeamsListFragment extends ListFragment {
                 Log.d(LOG_TAG, "Failure request");
             }
         });
+
     }
 
     @Override
@@ -194,5 +207,26 @@ public class CheckingTeamsListFragment extends ListFragment {
         }
 
         return handle;
+    }
+
+    private void addMyTeamToTournament(String id,String idTour) {
+        MyLeagueService myLeagueService;
+        myLeagueService = new MyLeagueService();
+        MyLeagueService.ApiInterface mMyLeagueApiInterface = myLeagueService.generateServiceInterface();
+        TeamsInTournaments teamsInTournaments = new TeamsInTournaments();
+        teamsInTournaments.setIdTeam(id);
+        teamsInTournaments.setIdTournament(idTour);
+        mMyLeagueApiInterface.addTeamToTournament(teamsInTournaments,new Callback<TeamsInTournaments>() {
+            @Override
+            public void success(TeamsInTournaments teamsInTournaments, Response response) {
+                if(response.getStatus()==201) {
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.w(LOG_TAG, "ERROR: downloading " + error.getBody());
+            }
+        });
     }
 }

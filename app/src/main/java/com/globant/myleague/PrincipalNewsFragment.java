@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,8 +22,10 @@ import com.globant.myleague.adapter.NewsAdapter;
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.pojo.News;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
@@ -35,6 +40,7 @@ public class PrincipalNewsFragment extends ListFragment {
     private final static String LOG_TAG= PrincipalNewsFragment.class.getSimpleName();
     public final static String KEY_NEWS_PREFERENCES="key_filter_news_preferences";
     public final static String KEY_DEFAULT_PREFERENCES="default_preferences";
+    public final int RESULT_SETTINGS=1;
 
     MyLeagueService.ApiInterface mMatchServiceInterface;
     ArrayAdapter<Matches> mAdapterListMatches;
@@ -148,6 +154,7 @@ public class PrincipalNewsFragment extends ListFragment {
             @Override
             public void success(List<Matches> listMatches, Response response) {
                 if(response.getStatus()==200){
+                    Log.d(LOG_TAG,String.valueOf(listMatches.size()));
                     mAdapterListMatches.clear();
                     mAdapterListMatches.addAll(listMatches);
                     mAdapterListMatches.notifyDataSetChanged();
@@ -249,4 +256,32 @@ public class PrincipalNewsFragment extends ListFragment {
         return idNewsOption;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+           inflater.inflate(R.menu.menu_principal_news, menu);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_filter_news) {
+
+            Intent intent = new Intent(getActivity(), SettingsPrincipalActivity.class);
+            startActivityForResult(intent, RESULT_SETTINGS);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

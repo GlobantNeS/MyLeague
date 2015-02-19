@@ -3,5 +3,4 @@
     android:id="@+id/container_principal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.globant.myleague.PrincipalNewsActivity"
     tools:ignore="MergeRootFrame" />

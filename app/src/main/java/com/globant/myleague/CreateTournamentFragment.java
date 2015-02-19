@@ -36,7 +36,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class CreateTournamentFragment extends Fragment {
+public class  CreateTournamentFragment extends Fragment {
 
     private static final String LOG_TAG = CreateTournamentFragment.class.getSimpleName();
 
@@ -113,6 +113,7 @@ public class CreateTournamentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_create_tournament, container, false);
+        getActivity().setTitle(getString(R.string.text_title_create_tournament));
         prepareViews(rootView);
         setViewListeners();
         setViewsProperties();

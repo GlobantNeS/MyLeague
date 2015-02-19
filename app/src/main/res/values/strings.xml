@@ -103,6 +103,13 @@
     <string name="menu_sync_teams">Synck Teams</string>
     <string name="action_add_team">Add team</string>
     <string name="toast_no_teams_found">Add some teams</string>
+    <string name="text_title_teams">Teams</string>
+    <string name="text_title_create_tournament">Create Tournament</string>
+    <string name="text_title_fill_matchs">Fill Statistics</string>
+    <string name="text_title_new_team">New Team</string>
+    <string name="text_title_add_teams_to_tournament">Add Teams to Tournament</string>
+    <string name="text_title_add_my_team_to_tournament">Add my Team to Tournament</string>
+    <string name="text_sucessfull_add_teams">Teams Added Sucessfull</string>
 
 
 </resources>

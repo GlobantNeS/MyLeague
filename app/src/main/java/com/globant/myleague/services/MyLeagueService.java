@@ -77,8 +77,11 @@ public class MyLeagueService {
         @POST(TOURNAMENTS_ENDPOINT)
         void setTournament(@Body Tournaments tournament, Callback<Tournaments> callback);
 
-        @PATCH(MATCHES_ENDPOINT)
-        void updateMatch(@Body Matches matches,Callback<Matches> callback);
+        @POST(TOURNAMENTS_ENDPOINT)
+        void addTeamsToTournament(@Body List <TeamsInTournaments> teamsInTournaments, Callback<List<TeamsInTournaments>> callback);
+
+        @PATCH(MATCHES_TOURNAMENT_ENDPOINT)
+        void updateMatch(@Path("id") String id,@Body Matches matches,Callback<Matches> callback);
 
         @POST(TEAMS_TOURNAMENT_ENDPOINT)
         void addTeamToTournament(@Body TeamsInTournaments teamsInTournaments,Callback<TeamsInTournaments> callback);

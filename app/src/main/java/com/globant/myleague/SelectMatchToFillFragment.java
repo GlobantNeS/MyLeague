@@ -29,6 +29,7 @@ public class SelectMatchToFillFragment extends ListFragment {
     ArrayAdapter<Matches> mAdapter;
 
     final static String LOG_TAG = SelectTournamentToMatchFragment.class.getSimpleName();
+    final static String ID_DB = "ID_DB";
     final static String TOURNAMENT_ID = "TOURNAMENT_ID";
     final static String LOCAL_ID = "LOCAL_ID";
     final static String VISIT_ID = "VISIT_ID";
@@ -64,6 +65,7 @@ public class SelectMatchToFillFragment extends ListFragment {
                 String IdVisit = selectedMatch.getIdVisit();
                 String nameLocal = selectedMatch.getNameLocal();
                 String nameVisit = selectedMatch.getNameVisit();
+                String idDB = selectedMatch.getIdDB();
 
                 Bundle bundle = new Bundle();
                 bundle.putString(TOURNAMENT_ID, selectedTournamentId);
@@ -71,17 +73,10 @@ public class SelectMatchToFillFragment extends ListFragment {
                 bundle.putString(VISIT_ID, IdVisit);
                 bundle.putString(LOCAL_NAME, nameLocal);
                 bundle.putString(VISIT_NAME, nameVisit);
+                bundle.putString(ID_DB, idDB);
                 MatchFillFragment matchFillFragment = new MatchFillFragment();
                 matchFillFragment.setArguments(bundle);
                 tools.loadFragment(getFragmentManager(),matchFillFragment,R.id.rightpane,"YES");
-
-                /*Intent intent = new Intent(getActivity(), MatchesFillActivity.class);
-                intent.putExtra(TOURNAMENT_ID, selectedTournamentId);
-                intent.putExtra(LOCAL_ID, IdLocal);
-                intent.putExtra(VISIT_ID, IdVisit);
-                intent.putExtra(LOCAL_NAME, nameLocal);
-                intent.putExtra(VISIT_NAME, nameVisit);
-                startActivity(intent);*/
             }
         });
     }
@@ -89,14 +84,18 @@ public class SelectMatchToFillFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-        String id=getArguments().getString(TOURNAMENT_ID);
-        mMyLeagueApiInterface.getMatchesForTournament(id,new Callback<List<Matches>>() {
+        final String id=getArguments().getString(TOURNAMENT_ID);
+        mMyLeagueApiInterface.getMatches(new Callback<List<Matches>>() {
             @Override
             public void success(List<Matches> matcheses, Response response) {
+                List<Matches> matches = new ArrayList<Matches>();
+                for(Matches matchesTemp:matcheses)
+                    if(matchesTemp.getId().equals(id))
+                        matches.add(matchesTemp);
                 if(response.getStatus()==200)
                 {
                     mAdapter.clear();
-                    mAdapter.addAll(matcheses);
+                    mAdapter.addAll(matches);
                     mAdapter.notifyDataSetChanged();
                 }
                 else {

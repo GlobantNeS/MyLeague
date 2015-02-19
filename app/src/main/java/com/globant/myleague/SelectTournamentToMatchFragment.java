@@ -40,6 +40,7 @@ public class SelectTournamentToMatchFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        getActivity().setTitle(getString(R.string.text_title_fill_matchs));
         MyLeagueService myLeagueService = new MyLeagueService();
         mMyLeagueApiInterface=myLeagueService.generateServiceInterface();
     }
@@ -73,8 +74,6 @@ public class SelectTournamentToMatchFragment extends ListFragment {
             public void success(List<Tournaments> tournamentses, Response response) {
                 if(response.getStatus()==200)
                 {
-                    for(Tournaments t:tournamentses)
-                        Log.d(LOG_TAG,t.getUrl_image());
                     mAdapter.clear();
                     mAdapter.addAll(tournamentses);
                     mAdapter.notifyDataSetChanged();

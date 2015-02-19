@@ -53,6 +53,7 @@ public class SignUpTeamFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sign_up_team, container, false);
+        getActivity().setTitle(getString(R.string.text_title_new_team));
         prepareText();
         prepareButton();
         return view;
@@ -86,7 +87,7 @@ public class SignUpTeamFragment extends Fragment {
                             Tools tools=new Tools();
                             tools.setIdUser(getActivity(),teams.getId());
                             Toast.makeText(getActivity(),"Added Team Ok",Toast.LENGTH_LONG).show();
-                            if(getArguments().size()!=0)
+                            if(getArguments()!=null)
                                 tools.loadFragment(getFragmentManager(),new TeamsListFragment(), R.id.rightpane,"NEWS");
                             else
                                 tools.loadFragment(getFragmentManager(),new PrincipalNewsFragment(), R.id.rightpane,"TEAMS");

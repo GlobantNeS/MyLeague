@@ -32,12 +32,14 @@ public class MatchFillFragment extends Fragment {
     private String idVisit;
     private String localName;
     private String visitName;
+    private String idDB;
 
     final static String TOURNAMENT_ID = "TOURNAMENT_ID";
     final static String LOCAL_ID = "LOCAL_ID";
     final static String VISIT_ID = "VISIT_ID";
     final static String LOCAL_NAME = "LOCAL_NAME";
     final static String VISIT_NAME = "VISIT_NAME";
+    final static String ID_DB = "ID_DB";
 
     private EditText etLocalGoals;
     private EditText etLocalFaults;
@@ -67,6 +69,7 @@ public class MatchFillFragment extends Fragment {
 
         localName=getArguments().getString(LOCAL_NAME);
         visitName=getArguments().getString(VISIT_NAME);
+        idDB=getArguments().getString(ID_DB);
 
 
         tvLocalName.setText(localName);
@@ -84,7 +87,7 @@ public class MatchFillFragment extends Fragment {
                 mMyLeagueApiInterface = myleagueService.generateServiceInterface();
                 matches = new Matches();
                 setMatches();
-                mMyLeagueApiInterface.updateMatch(matches,new Callback<Matches>() {
+                mMyLeagueApiInterface.updateMatch(idDB,matches,new Callback<Matches>() {
                     @Override
                     public void success(Matches matches, Response response) {
                         if(response.getStatus()==200) {
@@ -112,6 +115,7 @@ public class MatchFillFragment extends Fragment {
                 matches.setVisitExp(etVisitExp.getText().toString());
                 matches.setVisitFaults(etVisitFaults.getText().toString());
                 matches.setVisitScore(etVisitGoals.getText().toString());
+                matches.setIdDB(idDB);
             }
         });
     }

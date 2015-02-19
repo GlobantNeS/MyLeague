@@ -42,6 +42,7 @@ public class SelectTournamentToSignUpFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        getActivity().setTitle(getString(R.string.text_title_add_my_team_to_tournament));
         MyLeagueService myLeagueService = new MyLeagueService();
         mMyLeagueApiInterface=myLeagueService.generateServiceInterface();
     }

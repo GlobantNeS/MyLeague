@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Matches extends News {
 
+
+    @SerializedName("id")
+    private String idDB;
     @SerializedName("id_tor")
     private String id;
     @SerializedName("id_local")
@@ -152,4 +155,11 @@ public class Matches extends News {
         return "Local team=" + nameLocal + "Visit Team: "+ nameVisit;
     }
 
+    public String getIdDB() {
+        return idDB;
+    }
+
+    public void setIdDB(String idDB) {
+        this.idDB = idDB;
+    }
 }

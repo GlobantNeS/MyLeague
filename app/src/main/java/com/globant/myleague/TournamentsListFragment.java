@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import com.globant.myleague.adapter.LinkAdapterTournament;
 import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ import retrofit.client.Response;
 public class TournamentsListFragment extends ListFragment {
 
     public static final String TOURNAMENT_ID = "tournamentId";
+    Tools tools = new Tools();
 
     public TournamentsListFragment() {
     }
@@ -38,6 +40,7 @@ public class TournamentsListFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        getActivity().setTitle(getString(R.string.text_title_add_teams_to_tournament));
         MyLeagueService myLeagueService = new MyLeagueService();
         mMyLeagueApiInterface=myLeagueService.generateServiceInterface();
     }
@@ -53,9 +56,11 @@ public class TournamentsListFragment extends ListFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Tournaments selectedTournament = (Tournaments)mAdapter.getItem(position);
                 String selectedTournamentId = selectedTournament.getId();
-                Intent intent = new Intent(getActivity(), TeamsListActivity.class);
-                intent.putExtra(TOURNAMENT_ID, selectedTournamentId);
-                startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString(TOURNAMENT_ID, selectedTournamentId);
+                CheckingTeamsListFragment checkingTeamsListFragment = new CheckingTeamsListFragment();
+                checkingTeamsListFragment.setArguments(bundle);
+                tools.loadFragment(getFragmentManager(),checkingTeamsListFragment,R.id.rightpane,"YES");
             }
         });
 

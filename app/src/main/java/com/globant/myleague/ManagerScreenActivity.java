@@ -196,7 +196,6 @@ public class ManagerScreenActivity extends ActionBarActivity implements MenuFrag
 
                 break;
             case ADD_TEAMS_TO_TOURNAMENT:
-                //TODO
                 checkConnection(new TournamentsListFragment(),ADD_TEAMS_TO_TOURNAMENT);
                 break;
             case ADD_MY_TEAM_TO_TOURNAMENT:
