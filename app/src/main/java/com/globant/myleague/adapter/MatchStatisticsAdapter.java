@@ -17,11 +17,11 @@ import java.util.List;
 /**
  * Created by root on 16/02/15.
  */
-public class MatchNewsAdapter extends ArrayAdapter<Matches> {
+public class MatchStatisticsAdapter extends ArrayAdapter<Matches> {
 
     List<Matches> mlistMatches;
     Context mContext;
-    public MatchNewsAdapter(Context context, List<Matches> listMatches){
+    public MatchStatisticsAdapter(Context context, List<Matches> listMatches){
         super(context, R.layout.item_statistics_match,listMatches);
         mlistMatches = listMatches;
         this.mContext = context;
@@ -77,7 +77,7 @@ public class MatchNewsAdapter extends ArrayAdapter<Matches> {
 
     }
 
-    public class ViewHolder {
+    public static class ViewHolder {
         public final TextView textViewLocalTeamName;
         public final TextView textViewAwayTeamName;
         public final TextView textViewRedCardsLocal;
