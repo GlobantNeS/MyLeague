@@ -57,7 +57,7 @@ public class LinkAdapterTournament extends ArrayAdapter<Tournaments>{
         TextView tvTournamentName = (TextView)v.findViewById(R.id.tvTournamentName);
 
         String name=tournamentList.get(position).toString();
-        String url=tournamentList.get(position).getUrl();
+        String url=tournamentList.get(position).getUrl_image();
 
         tvTournamentName.setText(name);
         Tools.loadImageFromInternet(ctx,nivTournament, url);

@@ -16,8 +16,8 @@ public class Teams implements Parcelable {
     private String email;
     @SerializedName("phone")
     private String phone;
-    @SerializedName("url")
-    private String url;
+    @SerializedName("url_image")
+    private String urlimage;
 
     private boolean selected = false;
 
@@ -43,7 +43,7 @@ public class Teams implements Parcelable {
         manager = team.readString();
         email = team.readString();
         phone = team.readString();
-        url = team.readString();
+        urlimage = team.readString();
     }
 
 
@@ -88,12 +88,13 @@ public class Teams implements Parcelable {
         this.phone = phone;
     }
 
-    public String getUrl() {
-        return url;
+
+    public String getUrlimage() {
+        return urlimage;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlimage(String urlimage) {
+        this.urlimage = urlimage;
     }
 
     public boolean isSelected() {
@@ -116,6 +117,6 @@ public class Teams implements Parcelable {
         dest.writeString(manager);
         dest.writeString(email);
         dest.writeString(phone);
-        dest.writeString(url);
+        dest.writeString(urlimage);
     }
 }

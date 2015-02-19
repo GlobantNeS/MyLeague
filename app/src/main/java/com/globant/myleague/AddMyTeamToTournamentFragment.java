@@ -65,12 +65,16 @@ public class AddMyTeamToTournamentFragment extends Fragment{
     private void fillListView() {
         mAdapter = new LinkAdapterTeam(getActivity(), R.layout.fragment_item_view_teams_in_tournament,teamsList);
         String id=getArguments().getString(TOURNAMENT_ID);
-        mMyLeagueApiInterface.getTeamsInTournament(id,new Callback<List<TeamsInTournaments>>() {
+        mMyLeagueApiInterface.getAllTeamsInTournaments(new Callback<List<TeamsInTournaments>>() {
             @Override
             public void success(List<TeamsInTournaments> teamsInTournamentses, Response response) {
                 mAdapter.clear();
-                for(TeamsInTournaments t:teamsInTournamentses)
-                    loadDataTeam(t.getIdTeam());
+                if(response.getStatus()==200) {
+                    for (TeamsInTournaments t : teamsInTournamentses) {
+                        if(t.getIdTournament().equals(idTournament))
+                            loadDataTeam(t.getIdTeam());
+                    }
+                }
             }
 
             @Override

@@ -62,9 +62,9 @@ public class TeamsSelectionAdapter extends ArrayAdapter<Teams> {
 //            TextView editTextName = (TextView) rowView.findViewById(R.id.text_view_team_name);
 //            NetworkImageView imageView = (NetworkImageView) rowView.findViewById(R.id.network_image_view_team);
 //            CheckBox checkBox = (CheckBox) rowView.findViewById(R.id.checkbox_team);
-            Log.d(LOG_TAG, "URL view: " + mTeams.get(position).getUrl());
+            Log.d(LOG_TAG, "URL view: " + mTeams.get(position).getUrlimage());
             holder.mName.setText(mTeams.get(position).getName());
-            Tools.loadImageFromInternet(mContext,holder.imageView, mTeams.get(position).getUrl());
+            Tools.loadImageFromInternet(mContext,holder.imageView, mTeams.get(position).getUrlimage());
             holder.mChecked.setChecked(false);
             holder.mChecked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

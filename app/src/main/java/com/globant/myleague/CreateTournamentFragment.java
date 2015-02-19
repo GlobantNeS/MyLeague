@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -180,6 +181,7 @@ public class CreateTournamentFragment extends Fragment {
         tournament.setDateini(mEditTextDatePicker.getText().toString());
         tournament.setPeriod(mEditTextPeriod.getText().toString());
         tournament.setNumTeams(mEditTextNumberOfTeams.getText().toString());
+        tournament.setPrices(mEditTextAward.getText().toString());
         //TODO set URL image
 //                    tournament.setUrl("");
 
@@ -187,8 +189,11 @@ public class CreateTournamentFragment extends Fragment {
 
             @Override
             public void success(Tournaments tournaments, Response response) {
-                if(response.getStatus() == 200) {
-                    Toast.makeText(getActivity(), "TODO: Add Tournament", Toast.LENGTH_SHORT).show();
+                if(response.getStatus() == 201) {
+                    Toast.makeText(getActivity(), "Added Tournament Ok", Toast.LENGTH_SHORT).show();
+                    Tools tools = new Tools();
+                    PrincipalNewsFragment fragment=new PrincipalNewsFragment();
+                    tools.loadFragment(getFragmentManager(),fragment, R.id.rightpane,"NEWS");
                 } else Log.d(LOG_TAG, "bad request: " + response.getUrl());
             }
 

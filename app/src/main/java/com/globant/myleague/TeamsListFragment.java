@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.globant.myleague.adapter.TeamsAdapter;
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.services.MyLeagueService;
+import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit.Callback;
@@ -29,6 +31,7 @@ public class TeamsListFragment extends ListFragment {
 
     private static final String LOG_TAG = TeamsListFragment.class.getSimpleName();
     private static final int ADD_TEAM_REQUEST = 0;
+    private static final String BACK ="BACK";
     private TeamsAdapter mAdapter;
     MyLeagueService.ApiInterface mApiInterface;
     List<Teams> mTeams;
@@ -80,7 +83,7 @@ public class TeamsListFragment extends ListFragment {
         for(int i = 0; i < teamsResponse.size(); i++){
             team =new Teams();
             team.setName(teamsResponse.get(i).getName());
-            team.setUrl(teamsResponse.get(i).getUrl());
+            team.setUrlimage(teamsResponse.get(i).getUrlimage());
             mTeams.add(team);
         }
     }
@@ -100,7 +103,11 @@ public class TeamsListFragment extends ListFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_teams_list, menu);
+        HashMap<String,String> settings;
+        Tools tools = new Tools();
+        settings=tools.getPreferences(getActivity());
+        if(settings.get("id").equals("0"))
+            inflater.inflate(R.menu.menu_teams_list, menu);
     }
 
     @Override
@@ -108,8 +115,14 @@ public class TeamsListFragment extends ListFragment {
         boolean handle = false;
 
         switch (item.getItemId()) {
-            case R.id.action_add_team:  Intent intent = new Intent(getActivity(), CreateTeamActivity.class);
-                                        startActivityForResult(intent, ADD_TEAM_REQUEST);
+            case R.id.action_add_team:  Tools tools = new Tools();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString(BACK,BACK);
+                                        SignUpTeamFragment signUpTeamFragment = new SignUpTeamFragment();
+                                        signUpTeamFragment.setArguments(bundle);
+                                        tools.loadFragment(getFragmentManager(), signUpTeamFragment, R.id.rightpane,"NEWS");
+                                        //Intent intent = new Intent(getActivity(), CreateTeamActivity.class);
+                                        //startActivityForResult(intent, ADD_TEAM_REQUEST);
                                         handle = true;
 
             break;
