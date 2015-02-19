@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <string name="app_name">My League</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -51,9 +52,9 @@
     <string name="title_activity_principal_news">PrincipalNewsActivity</string>
     <string name="text_view_score_local_ppal">0</string>
     <string name="text_view_score_away_ppal">0</string>
-    <string name="text_view_name_away_ppal" />
-    <string name="text_view_name_local_ppal" />
-    <string name="nullString" />
+    <string name="text_view_name_away_ppal"></string>
+    <string name="text_view_name_local_ppal"></string>
+    <string name="nullString"></string>
     <string name="label_news">News</string>
     <string name="action_add_filter_news">Filter preferences</string>
     <string name="pref_filter_news">Filter preferences</string>
@@ -67,8 +68,41 @@
     <string name="edit_text_number_of_teams">Number of teams</string>
     <string name="title_activity_teams_list">TeamsListActivity</string>
     <string name="text_view_empty_list">No team entries</string>
+    <string name="text_view_label_notify_tournament">A new tournament has been created!</string>
+    <string name="text_view_news_description"></string>
+    <string name="text_view_title_news"></string>
+    <string name="title_activity_news_current_registrations">News</string>
     <string name="text_local_exp">Local Exp</string>
     <string name="text_visit_exp">Visit Exp</string>
+    <string name="text_news">News</string>
+    <string name="text_create_tournament">Create Tournament</string>
+    <string name="text_add_teams_to_tournament">Add Teams to Tournament</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_name_app">My League</string>
+    <string name="text_desc_ico">Image Icon</string>
+    <string name="text_check_connection">Please Check your Internet Connection</string>
+    <string name="text_contact">Contact</string>
+    <string name="text_user">User</string>
+    <string name="text_username">Username</string>
+    <string name="text_username_summary">Please enter a Username</string>
+    <string name="text_id">Id</string>
+    <string name="text_id_summary">The app fill this field</string>
+    <string name="text_send_email">Select a App to Send the Email</string>
+    <string name="text_body_mail">Make your questions to the Manager of MyLeague</string>
+    <string name="text_subject_email">My League Contact</string>
+    <string name="default_username">Username</string>
+    <string name="default_id">-1</string>
+    <string name="text_sign_up_team">Sign Up Team</string>
+    <string name="text_add_my_team_to_tournament">Add My Team to Tournament</string>
+    <string name="text_view_teams">View Teams</string>
+    <string name="text_fill_statistics">Fill Statistics</string>
+    <string name="text_sucessfull_add">Team Added Sucessfull</string>
+    <string name="text_sucessfull_fill_match">Sucessfull Save of Match</string>
+    <string name="button_add_team_tournament">Add team(s) to the tournament</string>
+    <string name="text_view_synck_teams">Please, sync teams to show</string>
+    <string name="menu_sync_teams">Synck Teams</string>
+    <string name="action_add_team">Add team</string>
+    <string name="toast_no_teams_found">Add some teams</string>
 
 
 </resources>

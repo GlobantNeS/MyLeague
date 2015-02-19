@@ -3,11 +3,9 @@ package com.globant.myleague;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -22,11 +20,21 @@ import com.globant.myleague.tools.Tools;
 import java.util.HashMap;
 
 
-public class ManagerScreenActivity extends ActionBarActivity implements menuFragment.OptionsMenuListener{
+public class ManagerScreenActivity extends ActionBarActivity implements MenuFragment.OptionsMenuListener{
 
 
     final static String MYLEAGUE = "MYLEAGUE";
     final static int REQUEST_CODE_SETTINGS =0;
+    public final static String NEWS= "NEWS";
+    public final static String CREATE_TOURNAMENT= "CREATE TOURNAMENT";
+    public final static String SIGN_UP_TEAM = "SIGN UP TEAM";
+    public final static String ADD_TEAMS_TO_TOURNAMENT= "ADD TEAMS TO TOURNAMENT";
+    public final static String ADD_MY_TEAM_TO_TOURNAMENT= "ADD MY TEAM TO TOURNAMENT";
+    public final static String FILL_STATISTICS= "FILL STATISTICS";
+    public final static String VIEW_TEAMS= "VIEW TEAMS";
+    public final static String CONTACT= "CONTACT";
+
+
 
     PagerEnabledSlidingPaneLayout slidingPaneLayout;
     Tools tools=new Tools();
@@ -48,7 +56,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
             if(settings.get("id").equals("-1"))
                 tools.loadFragment(getSupportFragmentManager(),new SignUpTeamFragment(),R.id.rightpane,"SIGN UP");
         PrincipalNewsFragment fragment=new PrincipalNewsFragment();
-        checkConnection(fragment,"NEWS");
+        checkConnection(fragment,NEWS);
     }
 
     @Override
@@ -176,30 +184,30 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
     @Override
     public void OptionsMenuListener(String optionMenu) {
         switch (optionMenu) {
-            case "NEWS":
-                checkConnection(new PrincipalNewsFragment(),"NEWS");
+            case NEWS:
+                checkConnection(new PrincipalNewsFragment(),NEWS);
                 break;
-            case "CREATE TOURNAMENT":
-                checkConnection(new CreateTournamentFragment(),"CREATE TOURNAMENT");
+            case CREATE_TOURNAMENT:
+                checkConnection(new CreateTournamentFragment(),CREATE_TOURNAMENT);
                 break;
-            case "SIGN UP TEAM":
-                    checkConnection(new SignUpTeamFragment(),"SIGN UP TEAM");
+            case SIGN_UP_TEAM:
+                    checkConnection(new SignUpTeamFragment(),SIGN_UP_TEAM);
                 break;
-            case "ADD TEAMS TO TOURNAMENT":
+            case ADD_TEAMS_TO_TOURNAMENT:
                 //TODO
-                checkConnection(new SignUpTeamFragment(),"ADD TEAMS TO TOURNAMENT");
+                checkConnection(new TournamentsListFragment(),ADD_TEAMS_TO_TOURNAMENT);
                 break;
-            case "ADD MY TEAM TO TOURNAMENT":
-                checkConnection(new SelectTournamentToSignUpFragment(),"ADD MY TEAM TO TOURNAMENT");
+            case ADD_MY_TEAM_TO_TOURNAMENT:
+                checkConnection(new SelectTournamentToSignUpFragment(),ADD_MY_TEAM_TO_TOURNAMENT);
                 break;
-            case "FILL STATISTICS":
-                checkConnection(new SelectTournamentToMatchFragment(),"FILL STATISTICS");
+            case FILL_STATISTICS:
+                checkConnection(new SelectTournamentToMatchFragment(),FILL_STATISTICS);
                 break;
-            case "VIEW TEAMS":
+            case VIEW_TEAMS:
                 //TODO
-                checkConnection(new SignUpTeamFragment(),"VIEW TEAMS");
+                checkConnection(new TeamsListFragment(),VIEW_TEAMS);
                 break;
-            case "CONTACT":
+            case CONTACT:
                 Intent intent=new Intent(Intent.ACTION_SEND);
                 intent.setType("plain/text");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"myleague@hotmail.com"});

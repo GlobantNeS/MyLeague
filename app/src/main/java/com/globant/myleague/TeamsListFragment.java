@@ -30,7 +30,6 @@ public class TeamsListFragment extends ListFragment {
     private static final String LOG_TAG = TeamsListFragment.class.getSimpleName();
     private static final int ADD_TEAM_REQUEST = 0;
     private TeamsAdapter mAdapter;
-    private boolean mShowAllTeams = false;
     MyLeagueService.ApiInterface mApiInterface;
     List<Teams> mTeams;
     
@@ -134,7 +133,7 @@ public class TeamsListFragment extends ListFragment {
                 if(resultCode == getActivity().RESULT_OK){
                     team = (Teams)data.getExtras().getParcelable("team");
                     mAdapter.add(team);
-                } else Toast.makeText(getActivity(), "Any team added", Toast.LENGTH_SHORT).show();
+                } else Toast.makeText(getActivity(), R.string.toast_no_teams_found, Toast.LENGTH_SHORT).show();
 
                 break;
         }
