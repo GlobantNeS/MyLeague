@@ -119,14 +119,14 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
     private void prepareToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_news_principal);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_image_dehaze);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_principal);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-         getMenuInflater().inflate(R.menu.menu_main, menu);
+         getMenuInflater().inflate(R.menu.menu_add_team, menu);
         return true;
     }
 
@@ -170,7 +170,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
 
     private void closePane() {
         slidingPaneLayout.closePane();
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_image_dehaze);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_principal);
     }
 
     @Override
@@ -183,7 +183,7 @@ public class ManagerScreenActivity extends ActionBarActivity implements menuFrag
                 checkConnection(new CreateTournamentFragment(),"CREATE TOURNAMENT");
                 break;
             case "SIGN UP TEAM":
-                    checkConnection(new SignUpTeamFragment(),"SIGN UP TEAM");
+                  checkConnection(new SignUpTeamFragment(),"SIGN UP TEAM");
                 break;
             case "ADD TEAMS TO TOURNAMENT":
                 //TODO

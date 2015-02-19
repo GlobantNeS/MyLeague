@@ -92,9 +92,9 @@
     <string name="text_subject_email">My League Contact</string>
     <string name="default_username">Username</string>
     <string name="default_id">-1</string>
-    <string name="text_sign_up_team">Sign Up Team</string>
-    <string name="text_add_my_team_to_tournament">Add My Team to Tournament</string>
-    <string name="text_view_teams">View Teams</string>
+    <string name="text_sign_up_team">New team</string>
+    <string name="text_add_my_team_to_tournament">Sign up to league</string>
+    <string name="text_view_teams">Teams</string>
     <string name="text_fill_statistics">Fill Statistics</string>
     <string name="text_sucessfull_add">Team Added Sucessfull</string>
     <string name="text_sucessfull_fill_match">Sucessfull Save of Match</string>
