@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
+
+    <include
+        layout="@layout/toolbar_principal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.globant.myleague.tools.PagerEnabledSlidingPaneLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/sp" >
+
+    <!-- Left side pane. (Master) -->
+    <fragment android:id="@+id/leftpane"
+        android:name="com.globant.myleague.menuFragment"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"  />
+
+
+    <!-- Right side page. (Slave)  -->
+    <fragment android:id="@+id/rightpane"
+        android:name="com.globant.myleague.ViewFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_weight="1"
+        />
+    </com.globant.myleague.tools.PagerEnabledSlidingPaneLayout>
+</LinearLayout>

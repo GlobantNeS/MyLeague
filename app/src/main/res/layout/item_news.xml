@@ -3,18 +3,65 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:id="@+id/linear_layout_match_item"
+    android:id="@+id/linear_layout_new_tournament_item"
     android:baselineAligned="false"
-    android:background="@color/divider">
+    android:background="@color/divider"
+    android:weightSum="1">
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape"
+        android:layout_marginTop="10dp"
+        android:weightSum="1"
+        android:layout_weight="9.90"
+        android:id="@+id/linearlayout_general_news"
+        android:focusable="false">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_view_title_news"
+            android:id="@+id/text_view_title_news"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:layout_weight="0.55" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/image_view_news" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:text="@string/text_view_news_description"
+            android:id="@+id/text_view_news_description"
+            android:padding="5dp" />
+    </LinearLayout>
+
+    <!--<LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/shape"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearlayout_match_statistics">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -33,7 +80,7 @@
                 android:id="@+id/text_view_match_date_ppal"
                 android:layout_weight="0.69"
                 android:gravity="right"
-               />
+                />
 
         </LinearLayout>
 
@@ -86,7 +133,7 @@
                 android:focusableInTouchMode="false" />
         </LinearLayout>
 
-        <LinearLayout
+       <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="26dp"
@@ -206,7 +253,7 @@
 
 
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 </LinearLayout>

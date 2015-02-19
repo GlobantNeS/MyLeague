@@ -2,7 +2,8 @@ package com.globant.myleague.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Matches {
+public class Matches extends News {
+
     @SerializedName("id_tor")
     private String id;
     @SerializedName("id_local")
@@ -145,4 +146,10 @@ public class Matches {
     public void setUrlImgVisit(String urlImgVisit) {
         this.urlImgVisit = urlImgVisit;
     }
+
+    @Override
+    public String toString() {
+        return "Local team=" + nameLocal + "Visit Team: "+ nameVisit;
+    }
+
 }
