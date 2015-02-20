@@ -25,7 +25,7 @@ import com.globant.myleague.services.MyLeagueService;
 import com.globant.myleague.tools.Tools;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import com.google.common.collect.Lists;
 import java.util.List;
 
 import retrofit.Callback;
@@ -157,8 +157,9 @@ public class PrincipalNewsFragment extends ListFragment {
             public void success(List<Matches> listNews, Response response) {
                 if (response.getStatus() == 200) {
                     parseList(listNews);
+                    List<Matches> reverseList=Lists.reverse(listNews);
                     mAdapterListNews.clear();
-                    mAdapterListNews.addAll(listNews);
+                    mAdapterListNews.addAll(reverseList);
                     mAdapterListNews.notifyDataSetChanged();
                 } else {
                     Log.e(LOG_TAG, "Matches retrieval status problem: " + response.getReason());
