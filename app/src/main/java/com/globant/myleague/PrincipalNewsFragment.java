@@ -44,7 +44,6 @@ public class PrincipalNewsFragment extends ListFragment {
     public final static String KEY_MATCH = "match";
 
     MyLeagueService.ApiInterface mMatchServiceInterface;
-    ArrayAdapter<Matches> mAdapterListMatches;
     ArrayAdapter<Matches> mAdapterListNews;
     private Object mNew;
 
@@ -68,26 +67,7 @@ public class PrincipalNewsFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String preferences = getNewsSettings();
-        switch(preferences){
-            case "Show Matches":
-                prepareListviewMatches();
-                break;
-            case "Show news soccer teams":
-                prepareListviewNews();
-                break;
-            case "Show new tournaments":
-                prepareListviewNews();
-                break;
-            case "Show all news":
-                prepareListviewNews();
-                break;
-            default:  prepareListviewMatches();
-                      prepareListviewNews();
-
-        }
-
-
+        prepareListviewNews();
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -143,11 +123,6 @@ public class PrincipalNewsFragment extends ListFragment {
 
     }
 
-    private void prepareListviewMatches(){
-        List<Matches> listMatches = new ArrayList<>();
-        mAdapterListMatches = new MatchStatisticsAdapter(getActivity(),listMatches);
-        setListAdapter(mAdapterListMatches);
-    }
 
     private void prepareListviewNews(){
         List<Matches> listNews = new ArrayList<>();
@@ -161,9 +136,9 @@ public class PrincipalNewsFragment extends ListFragment {
             public void success(List<Matches> listMatches, Response response) {
                 if(response.getStatus()==200){
                     Log.d(LOG_TAG,String.valueOf(listMatches.size()));
-                    mAdapterListMatches.clear();
-                    mAdapterListMatches.addAll(listMatches);
-                    mAdapterListMatches.notifyDataSetChanged();
+                    mAdapterListNews.clear();
+                    mAdapterListNews.addAll(listMatches);
+                    mAdapterListNews.notifyDataSetChanged();
                 }else{
                     Log.e(LOG_TAG, "Matches retrieval status problem: " + response.getReason());
 
