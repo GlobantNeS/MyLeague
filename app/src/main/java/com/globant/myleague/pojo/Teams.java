@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Teams implements Parcelable {
+    private static final String DEFAULT_IMAGE_TEAM = "http://i.ebayimg.com/00/s/NjAwWDYwMA==/z/NE8AAOxyqlhSMem0/$(KGrHqF,!lMFIO5H3RM0BSMemz0+NQ~~60_35.JPG";
     @SerializedName("id")
     private String id;
     @SerializedName("name")
@@ -90,6 +91,12 @@ public class Teams implements Parcelable {
 
 
     public String getUrlimage() {
+     
+        if(urlimage == null)
+            return DEFAULT_IMAGE_TEAM;
+        else
+            if(urlimage.isEmpty())
+                return DEFAULT_IMAGE_TEAM;
         return urlimage;
     }
 

@@ -3,6 +3,7 @@ package com.globant.myleague.pojo;
 import com.google.gson.annotations.SerializedName;
 
 public class Tournaments {
+    private static final String DEFAULT_IMAGE_TOURNAMENT = "http://www.kickleuk.org/wp-content/uploads/2014/01/golden-trophy-cup-soccer-ball-19818804.jpg";
     @SerializedName("id")
     private String id;
     @SerializedName("name")
@@ -73,6 +74,11 @@ public class Tournaments {
     }
 
     public String getUrl_image() {
+        if(url_image == null)
+            return DEFAULT_IMAGE_TOURNAMENT;
+        else
+            if(url_image.isEmpty())
+                return DEFAULT_IMAGE_TOURNAMENT;
         return url_image;
     }
 
