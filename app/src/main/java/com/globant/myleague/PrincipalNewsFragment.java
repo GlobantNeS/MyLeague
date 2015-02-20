@@ -41,10 +41,13 @@ public class PrincipalNewsFragment extends ListFragment {
     public final static String KEY_NEWS_PREFERENCES="key_filter_news_preferences";
     public final static String KEY_DEFAULT_PREFERENCES="default_preferences";
     public final int RESULT_SETTINGS=1;
+    public final static String KEY_MATCH = "match";
 
     MyLeagueService.ApiInterface mMatchServiceInterface;
     ArrayAdapter<Matches> mAdapterListMatches;
     ArrayAdapter<Matches> mAdapterListNews;
+    private Object mNew;
+
     public PrincipalNewsFragment() {
     }
 
@@ -88,6 +91,7 @@ public class PrincipalNewsFragment extends ListFragment {
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mNew = parent.getItemAtPosition(position);
                 showViewByItem(position);
             }
         });
@@ -99,7 +103,7 @@ public class PrincipalNewsFragment extends ListFragment {
             News news = mAdapterListNews.getItem(position);
             if(news.getIdNews().equals("2")){
                 Log.w(LOG_TAG, "Click en Partido");
-                startMatchResultActivity();
+                startMatchResultActivity();//
             }else if(news.getIdNews().equals("1")){
                 Log.w(LOG_TAG, "Click en News");
             }
@@ -112,6 +116,8 @@ public class PrincipalNewsFragment extends ListFragment {
 
     private void startMatchResultActivity() {
         Intent intent = new Intent(getActivity(), MatchResultActivity.class);
+        Matches matches = (Matches) mNew;
+        intent.putExtra(KEY_MATCH, matches);
         startActivity(intent);
     }
 

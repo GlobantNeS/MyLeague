@@ -1,8 +1,11 @@
 package com.globant.myleague.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Matches extends News {
+public class Matches extends News implements Parcelable {
 
 
     @SerializedName("id")
@@ -36,6 +39,38 @@ public class Matches extends News {
     @SerializedName("url_img_visit")
     private String urlImgVisit;
 
+    public static Creator<Matches> CREATOR = new Creator<Matches>() {
+        @Override
+        public Matches createFromParcel(Parcel source) {
+            return new Matches(source);
+        }
+
+        @Override
+        public Matches[] newArray(int size) {
+            return new Matches[size];
+        }
+    };
+
+    public Matches(){
+
+    }
+
+    public Matches(Parcel matches){
+        id = matches.readString();
+        idLocal =  matches.readString();
+        nameLocal = matches.readString();
+        idVisit = matches.readString();
+        nameVisit = matches.readString();
+        dateMatch = matches.readString();
+        localScore = matches.readString();
+        localFaults = matches.readString();
+        localExp = matches.readString();
+        visitScore = matches.readString();
+        visitFaults = matches.readString();
+        visitExp = matches.readString();
+        urlImgLocal = matches.readString();
+        urlImgVisit = matches.readString();
+    }
 
 
     public String getId() {
@@ -155,11 +190,36 @@ public class Matches extends News {
         return "Local team=" + nameLocal + "Visit Team: "+ nameVisit;
     }
 
+
     public String getIdDB() {
         return idDB;
     }
 
     public void setIdDB(String idDB) {
         this.idDB = idDB;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(idLocal);
+        dest.writeString(nameLocal);
+        dest.writeString(idVisit);
+        dest.writeString(nameVisit);
+        dest.writeString(dateMatch);
+        dest.writeString(localScore);
+        dest.writeString(localFaults);
+        dest.writeString(localExp);
+        dest.writeString(visitScore);
+        dest.writeString(visitFaults);
+        dest.writeString(visitExp);
+        dest.writeString(urlImgLocal);
+        dest.writeString(urlImgVisit);
+
     }
 }
