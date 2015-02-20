@@ -103,6 +103,7 @@
     <string name="menu_sync_teams">Synck Teams</string>
     <string name="action_add_team">Add team</string>
     <string name="toast_no_teams_found">Add some teams</string>
+    <string name="toast_no_match">No match found</string>
 
 
 </resources>

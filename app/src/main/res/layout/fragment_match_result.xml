@@ -37,7 +37,7 @@
         <com.android.volley.toolbox.NetworkImageView
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:id="@+id/image_view_local_ppal"
+            android:id="@+id/image_view_local"
             android:layout_weight="0.19" />
 
         <TextView
@@ -69,7 +69,7 @@
         <com.android.volley.toolbox.NetworkImageView
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:id="@+id/image_view_away_ppal"
+            android:id="@+id/image_view_visitant"
             android:layout_weight="0.15"
             android:layout_gravity="center_vertical"
             android:focusableInTouchMode="false" />
@@ -85,7 +85,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/text_view_name_local_ppal"
-            android:id="@+id/text_view_name_local_ppal"
+            android:id="@+id/text_view_local_name"
             android:layout_weight="0.38"
             android:paddingLeft="0dp"
             android:gravity="center" />
@@ -103,7 +103,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/text_view_name_away_ppal"
-            android:id="@+id/text_view_name_away_ppal"
+            android:id="@+id/text_view_visitant_name"
             android:paddingLeft="0dp"
             android:gravity="center" />
     </LinearLayout>
@@ -140,13 +140,13 @@
                         android:layout_width="15dp"
                         android:layout_height="20dp"
                         android:id="@+id/imageView"
-                        android:background="#ffff0c13" />
+                        android:background="@drawable/ic_red_card" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:text="@string/text_view_red_cards_for_play"
-                        android:id="@+id/text_view_red_cards_local_ppal"
+                        android:id="@+id/text_view_local_red_cards"
                         android:layout_weight="0.03"
                         android:paddingLeft="5dp" />
                 </LinearLayout>
@@ -161,13 +161,13 @@
                         android:layout_width="15dp"
                         android:layout_height="20dp"
                         android:id="@+id/imageView2"
-                        android:background="#ffffe919" />
+                        android:background="@drawable/ic_yellow_card" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:text="@string/text_view_yellow_cards_for_play"
-                        android:id="@+id/text_view_yellow_cards_local_ppal"
+                        android:id="@+id/text_view_local_yellow_cards"
                         android:layout_weight="0.09"
                         android:paddingLeft="5dp" />
                 </LinearLayout>
@@ -198,7 +198,7 @@
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:text="@string/text_view_red_cards_for_play"
-                        android:id="@+id/text_view_red_cards_visit_ppal"
+                        android:id="@+id/text_view_visitant_red_cards"
                         android:layout_weight="0.01"
                         android:paddingLeft="5dp" />
 
@@ -206,7 +206,7 @@
                         android:layout_width="15dp"
                         android:layout_height="20dp"
                         android:id="@+id/imageView3"
-                        android:background="#ffff0c13" />
+                        android:background="@drawable/ic_red_card" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -219,7 +219,7 @@
                         android:layout_width="0dp"
                         android:layout_height="20dp"
                         android:text="@string/text_view_yellow_cards_for_play"
-                        android:id="@+id/text_view_yellow_cards_visit_ppal"
+                        android:id="@+id/text_view_visitant_yellow_cards"
                         android:layout_weight="0.01"
                         android:paddingLeft="5dp" />
 
@@ -227,7 +227,7 @@
                         android:layout_width="15dp"
                         android:layout_height="20dp"
                         android:id="@+id/imageView4"
-                        android:background="#ffffe919" />
+                        android:background="@drawable/ic_yellow_card" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
