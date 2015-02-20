@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.globant.myleague.pojo.Clubs;
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.services.MyLeagueService;
 import com.globant.myleague.tools.Tools;
@@ -73,7 +74,7 @@ public class SignUpTeamFragment extends Fragment {
             public void onClick(View v) {
                 MyLeagueService myleagueService= new MyLeagueService();
                 mMyLeagueApiInterface = myleagueService.generateServiceInterface();
-                Teams team=new Teams();
+                final Teams team=new Teams();
                 team.setName(etName.getText().toString());
                 team.setManager(etManager.getText().toString());
                 team.setEmail(etEmail.getText().toString());
@@ -87,11 +88,35 @@ public class SignUpTeamFragment extends Fragment {
                             Tools tools=new Tools();
                             tools.setIdUser(getActivity(),teams.getId());
                             Toast.makeText(getActivity(),"Added Team Ok",Toast.LENGTH_LONG).show();
-                            if(getArguments()!=null)
-                                tools.loadFragment(getFragmentManager(),new TeamsListFragment(), R.id.rightpane,"NEWS");
-                            else
-                                tools.loadFragment(getFragmentManager(),new PrincipalNewsFragment(), R.id.rightpane,"TEAMS");
+                            createNewTeam(tools);
                         }
+                    }
+
+                    private void createNewTeam(Tools tools) {
+                        Clubs clubs = new Clubs();
+                        clubs.setIdNews("1");
+                        clubs.setTitleNews("A new club has been registered "+team.getName()+" has been registered");
+                        saveClub(clubs);
+                    }
+
+                    public void saveClub(Clubs clubs){
+                        MyLeagueService myleagueService= new MyLeagueService();
+                        mMyLeagueApiInterface = myleagueService.generateServiceInterface();
+                        mMyLeagueApiInterface.setClubs(clubs,new Callback<Clubs>() {
+                            @Override
+                            public void success(Clubs clubs, Response response) {
+                                Tools tools = new Tools();
+                                if(getArguments()!=null)
+                                    tools.loadFragment(getFragmentManager(),new TeamsListFragment(), R.id.rightpane,"NEWS");
+                                else
+                                    tools.loadFragment(getFragmentManager(),new PrincipalNewsFragment(), R.id.rightpane,"TEAMS");
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Log.d(LOG_TAG, "failure request: " + error.getUrl());
+                            }
+                        });
                     }
 
                     @Override

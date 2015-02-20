@@ -1,5 +1,6 @@
 package com.globant.myleague.services;
 
+import com.globant.myleague.pojo.Clubs;
 import com.globant.myleague.pojo.Matches;
 import com.globant.myleague.pojo.News;
 import com.globant.myleague.pojo.Teams;
@@ -33,6 +34,7 @@ public class MyLeagueService {
     final static String NEWS_CURRENTLY_CLUBS_REGISTERED = "/clubs.json";
     final static String NEWS_TOURNAMENTS = "/news_tournaments.json";
     final static String ALL_NEWS_ENDPOINT = "/news.json";
+    final static String ALL_CLUBS_ENDPOINT = "/clubs.json";
 
     /*final static String API_URL = "http://private-a479a-myleague.apiary-mock.com";
     final static String TOURNAMENTS_ENDPOINT = "/tournaments";
@@ -74,6 +76,9 @@ public class MyLeagueService {
 
         @POST(ALL_NEWS_ENDPOINT)
         void setNews(@Body News news,Callback<News> callback);
+
+        @POST(ALL_NEWS_ENDPOINT)
+        void setClubs(@Body Clubs clubs,Callback<Clubs> callback);
 
         @POST(MATCHES_ENDPOINT)
         void setMatch(@Body Matches matches,Callback<Matches> callback);
