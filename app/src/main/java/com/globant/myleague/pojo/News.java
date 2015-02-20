@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
  * Created by root on 17/02/15.
  */
 public class News {
+
+    private static final String DEFAULT_IMAGE_NEWS = "http://fortyfort.org/images/news.jpg";
+
     @SerializedName("title_news")
     private String titleNews;
     @SerializedName("id_new")
@@ -28,6 +31,11 @@ public class News {
     }
 
     public String getUrlPicture() {
+        if(urlPicture == null)
+            return DEFAULT_IMAGE_NEWS;
+        else
+            if(urlPicture.isEmpty())
+                return DEFAULT_IMAGE_NEWS;
         return urlPicture;
     }
 

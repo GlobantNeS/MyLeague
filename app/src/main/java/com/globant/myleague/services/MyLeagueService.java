@@ -1,6 +1,7 @@
 package com.globant.myleague.services;
 
 import com.globant.myleague.pojo.Matches;
+import com.globant.myleague.pojo.News;
 import com.globant.myleague.pojo.Teams;
 import com.globant.myleague.pojo.TeamsInTournaments;
 import com.globant.myleague.pojo.Tournaments;
@@ -70,6 +71,9 @@ public class MyLeagueService {
 
         @POST(TEAMS_ENDPOINT)
         void setTeam(@Body Teams team,Callback<Teams> callback);
+
+        @POST(ALL_NEWS_ENDPOINT)
+        void setNews(@Body News news,Callback<News> callback);
 
         @POST(MATCHES_ENDPOINT)
         void setMatch(@Body Matches matches,Callback<Matches> callback);

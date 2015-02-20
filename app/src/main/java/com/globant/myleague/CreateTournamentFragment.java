@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.globant.myleague.pojo.News;
 import com.globant.myleague.pojo.Tournaments;
 import com.globant.myleague.services.MyLeagueService;
 import com.globant.myleague.tools.Tools;
@@ -177,7 +178,7 @@ public class  CreateTournamentFragment extends Fragment {
     private void addTournamentRequest() {
         MyLeagueService myleagueService= new MyLeagueService();
         mMyLeagueApiInterface = myleagueService.generateServiceInterface();
-        Tournaments tournament = new Tournaments();
+        final Tournaments tournament = new Tournaments();
         tournament.setName(mEditTextTournamentName.getText().toString());
         tournament.setDateini(mEditTextDatePicker.getText().toString());
         tournament.setPeriod(mEditTextPeriod.getText().toString());
@@ -192,10 +193,34 @@ public class  CreateTournamentFragment extends Fragment {
             public void success(Tournaments tournaments, Response response) {
                 if(response.getStatus() == 201) {
                     Toast.makeText(getActivity(), "Added Tournament Ok", Toast.LENGTH_SHORT).show();
-                    Tools tools = new Tools();
-                    PrincipalNewsFragment fragment=new PrincipalNewsFragment();
-                    tools.loadFragment(getFragmentManager(),fragment, R.id.rightpane,"NEWS");
+                    createNews();
                 } else Log.d(LOG_TAG, "bad request: " + response.getUrl());
+            }
+
+            private void createNews() {
+                News news = new News();
+                news.setIdNews("1");
+                news.setTitleNews("A new tournament has been created few seconds  ago");
+                news.setDescriptionNews(tournament.getName());
+                saveNews(news);
+            }
+
+            private void saveNews(News news) {
+                MyLeagueService myleagueService= new MyLeagueService();
+                mMyLeagueApiInterface = myleagueService.generateServiceInterface();
+                mMyLeagueApiInterface.setNews(news,new Callback<News>() {
+                    @Override
+                    public void success(News news, Response response) {
+                        Tools tools = new Tools();
+                        PrincipalNewsFragment fragment=new PrincipalNewsFragment();
+                        tools.loadFragment(getFragmentManager(),fragment, R.id.rightpane,"NEWS");
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        Log.d(LOG_TAG, "failure request: " + error.getUrl());
+                    }
+                });
             }
 
             @Override
